@@ -39,6 +39,15 @@ gulp.task('builddev2', () => {
         .bundle()
         .pipe(source('main.js'))
         .pipe(gulp.dest('./assets/script'));
+
+        browserify('./html/script/header.js')
+        .transform(babelify, {
+            presets: ['es2015', 'react']
+        })
+        .transform(shim)
+        .bundle()
+        .pipe(source('header.js'))
+        .pipe(gulp.dest('./assets/script'));
     });
 });
 gulp.task('builddev3', () => {
