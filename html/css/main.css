@@ -1,17 +1,34 @@
 :root{
     --aaa: #d33;
 }
+@mixin font-dpr($font-size){
+    font-size: $font-size;
+
+    [data-dpr="2"] & {
+        font-size: $font-size * 2;
+    }
+
+    [data-dpr="3"] & {
+        font-size: $font-size * 3;
+    }
+}
+
 body{
-    color:var(--aaa);
+    /*color:var(--aaa);*/
     display:flex;
-    font-size: 0.64rem;
+    font-size: 14px; /*px*/
+    /*@include font-dpr(16px);*/
+
 }
 .header{
     width: 20rem;
 	height: 10.4rem;
 }
 .title_header{
-    
+    width: 150px;
+    height: 64px; /*px*/
+    font-size: 28px; /*px*/
+    border: 1px solid #ddd; /*no*/
 }
 .footer{
     width:100px;

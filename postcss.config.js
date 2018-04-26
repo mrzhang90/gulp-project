@@ -3,6 +3,7 @@ const cssnext = require('postcss-cssnext');
 const cssvariables = require('postcss-css-variables');
 //预处理的css-类似sass,向写js一样写css
 const precss = require('precss');
+const px2rem = require('postcss-px2rem');
 module.exports = {
 	plugins: [
 		//浏览器向上3个版本,生成对应的css
@@ -10,7 +11,7 @@ module.exports = {
 			browsers: "last 3 versions"
 		}),
 		cssnext({}),
-		cssvariables({})
-
+		cssvariables({}),
+		px2rem({remUnit: 37.5})
 	]
 }
