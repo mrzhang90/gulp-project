@@ -1,0 +1,20 @@
+:root{
+    --aaa: #d33;
+}
+body{
+    color:var(--aaa);
+    display:flex;
+    font-size: 0.64rem;
+}
+.header{
+    width: 20rem;
+	height: 10.4rem;
+}
+.title_header{
+    
+}
+.footer{
+    width:100px;
+    height:100px;
+    margin:0 atuo;
+}
