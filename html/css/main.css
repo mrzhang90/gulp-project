@@ -1,37 +1,169 @@
 :root{
-    --aaa: #d33;
+    /* --aaa: #d33; */
 }
 @mixin font-dpr($font-size){
     font-size: $font-size;
 
     [data-dpr="2"] & {
-        font-size: $font-size * 2;
+        font-size: calc($font-size * 2);
     }
 
     [data-dpr="3"] & {
-        font-size: $font-size * 3;
+        font-size: calc($font-size * 3);
     }
 }
-
-body{
+@mixin bg_set(){
+    background-size:cover;
+    background-repeat:no-repeat;
+}
+@mixin bg_img($name){
+    background-image: image-set(url(../images/$(name)-1x.png) 1x,
+                                url(../images/$(name)-2x.png) 2x,
+                                url(../images/$(name)-3x.png) 3x);
+    @include bg_set();
+}
+.ui-col{
+    flex:1;
+}
+.hide{
+    display:none;
+}
+.show{
+    display:block;
+}
+html,body{
+    min-height:100%;
+    background-color: #efefef;
+}
+body,h2,h3,p{
+    margin:0;padding:0;
     /*color:var(--aaa);*/
-    display:flex;
-    font-size: 14px; /*px*/
-    /*@include font-dpr(16px);*/
-
+}
+button{
+    background:none;
+    border:none;
+}
+body,button{
+    @include font-dpr(24px); /*px*/
+}
+#root{
+    width:100%;
 }
 .header{
-    width: 20rem;
-	height: 10.4rem;
+    color:#fff;
+    @include bg_img(bg_head);
+    padding:39px 0 40px;
+    .title_header{
+        padding-bottom:21px;
+        /*border: 1px solid #ddd; no*/
+        text-align:center;
+        @include font-dpr(28px); /*px*/
+    }
+    .FirstTeam{
+        .teamPhoto{
+            @include bg_img(icon_hometeam);
+        }
+    }
+    .SecondTeam{
+        .teamPhoto{
+            @include bg_img(icon_secondteam);
+        }
+    }
+    .team_header{
+        display:flex;
+        justify-content: space-between;
+        padding:0 76px;
+        height:240px;
+        text-align:center;
+        .vs{
+            padding-top:47px;
+            text-align:center;
+        }
+        .lookBank{
+            margin-top:38px;
+            width: 120px;
+	        height: 46px;
+            background-color: #29a871;
+            border-radius: 23px;
+            color:#fff;
+            text-decoration: underline;
+        }
+    }
+    .teamPhoto{
+        margin:15px auto 0;
+        width:96px;height:96px;
+    }
+    .teamName{
+        margin-top:19px;
+    }
+    .teamScore{
+        margin-top:15px;
+    }
+    .currentTime{
+        padding-top:10px;
+        text-align:center;
+    }
 }
-.title_header{
-    width: 150px;
-    height: 64px; /*px*/
-    font-size: 28px; /*px*/
-    border: 1px solid #ddd; /*no*/
-}
-.footer{
-    width:100px;
-    height:100px;
-    margin:0 atuo;
+  
+.tab_main{
+    .tab_title{
+        line-height:80px;
+        display: flex;
+        text-align:center;
+        background:#fff;
+        .ui-col{
+            position:relative;
+            @include font-dpr(28px); /*px*/
+            color: #999;
+        }
+        .ui-col:after{
+            content:"";
+            position:absolute;left:50%;bottom:0;
+            transform: translate(-50%,0);
+            height: 4px;
+            width:0;
+            background-color: #29a871;
+        }
+        .nav-active{
+            color:#000;
+        }
+        .nav-active:after{
+            width:100%;
+            transition: width 0.2s linear;
+        }
+    }
+    .tab_content{
+        .title{
+            padding-left:22px;
+            line-height:64px;
+            color: #999;
+        }
+        .list{
+            line-height:80px;
+            @include font-dpr(28px); /*px*/
+            background:#fff;
+            li{
+                position:relative;
+                padding-left:70px;
+            }
+            li:after{
+                content:"";
+                width:24px;height:30px;margin-top:-15px;
+                position: absolute;left:24px;top:50%;
+                background-position:center center;
+                @include bg_set();
+                background-size:contain;
+            }
+            li:first-child:after{
+                background-image:url("../images/icon_1.png");
+            }
+            li:nth-child(2):after{
+                background-image:url("../images/icon_2.png");
+            }
+            li:nth-child(3):after{
+                margin-top:-18px;
+                background-image:url("../images/icon_3.png");
+            }
+        }
+    }
 }
