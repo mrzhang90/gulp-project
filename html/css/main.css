@@ -25,6 +25,12 @@
 .ui-col{
     flex:1;
 }
+.pl18{
+    padding-left:18px;
+}
+.pr18{
+    padding-right:18px;
+}
 .hide{
     display:none;
 }
@@ -140,8 +146,13 @@ body,button{
         }
         .list{
             line-height:80px;
-            @include font-dpr(28px); /*px*/
             background:#fff;
+            li{
+                border-bottom:solid 1px #efefef;
+            }
+        }
+        .tab_introduce{
+            @include font-dpr(28px); /*px*/
             li{
                 position:relative;
                 padding-left:70px;
@@ -163,6 +174,47 @@ body,button{
             li:nth-child(3):after{
                 margin-top:-18px;
                 background-image:url("../images/icon_3.png");
+            }
+        }
+        .tab_score{
+            li{
+                display:flex;
+                padding:0 53px;
+                span{
+                    flex:1;
+                    text-align:center;
+                }
+                span:nth-child(2){
+                    color:#999;
+                }
+            }
+        }
+        .tab_optimal{
+            .list{
+                padding:5px 40px;
+            }
+            li{
+                padding:13px 0;
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                border-bottom:none;
+            }
+            .between{
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                width:290px;
+                div{
+                    display:flex;
+                    align-items:center;
+                    span{
+                        padding-left:18px;
+                    }
+                }
+            }
+            .middle{
+
             }
         }
     }

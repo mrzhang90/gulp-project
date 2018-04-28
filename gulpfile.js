@@ -74,6 +74,24 @@ gulp.task('builddev3', () => {
         .bundle()
         .pipe(source('tab_router.js'))
         .pipe(gulp.dest('./assets/script'));
+
+        browserify('./html/script/tab_data_controller.js')
+        .transform(babelify, {
+            presets: ['es2015', 'react']
+        })
+        .transform(shim)
+        .bundle()
+        .pipe(source('tab_data_controller.js'))
+        .pipe(gulp.dest('./assets/script'));
+
+        browserify('./html/script/tab_introduce_controller.js')
+        .transform(babelify, {
+            presets: ['es2015', 'react']
+        })
+        .transform(shim)
+        .bundle()
+        .pipe(source('tab_introduce_controller.js'))
+        .pipe(gulp.dest('./assets/script'));
     });
 });
 gulp.task('builddev4', () => {
