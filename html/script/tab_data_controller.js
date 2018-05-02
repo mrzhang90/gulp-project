@@ -93,7 +93,7 @@ class OptimalController extends Component{
 }
 class ComparedController extends Component{
     constructor(props){
-        super(props)
+        super(props);
     }
     render(){
         const services=this.props.services
@@ -102,7 +102,7 @@ class ComparedController extends Component{
                 <h3 className="title">球队对比</h3>
                 <div>
                     AAA
-                <div>
+                </div>
             </div>
         )
     }
