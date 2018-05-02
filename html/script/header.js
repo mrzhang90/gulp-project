@@ -10,7 +10,7 @@ class HeaderComponent extends React.Component{
         const services=this.props.name
         return (
             <div className="header">
-                <h1 className="title_header">{services.name}</h1>
+                <h1 className="title_header">{services.activityName}</h1>
                 <div className="team_header">
                     <div className="FirstTeam">
                         <h2 className="teamTitle">主队</h2>
@@ -38,7 +38,6 @@ class HeaderComponent extends React.Component{
                 <div className="currentTime">{services.currentTime}</div>
             </div>
         )
-     
     }
 }
 export default HeaderComponent;

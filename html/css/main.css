@@ -22,6 +22,9 @@
                                 url(../images/$(name)-3x.png) 3x);
     @include bg_set();
 }
+.flex{
+    display:flex;
+}
 .ui-col{
     flex:1;
 }
@@ -36,6 +39,15 @@
 }
 .show{
     display:block;
+}
+.bgGreen{
+    background-color: #339966;
+}
+.bgGrey{
+    background-color: #cccccc;
+}
+.bgBlack{
+    background-color: #000;
 }
 html,body{
     min-height:100%;
@@ -217,5 +229,86 @@ body,button{
 
             }
         }
+        .tab_diff{
+            .diff_cont{
+                width:100%;
+                overflow:hidden;
+                background:#fff;
+            }
+            .diff_col{
+                width:50%;
+            }
+            .diff_dec{
+                text-align:center;
+            }
+            .diff_list{
+            }
+            .flex_li{
+                align-items: center;
+                justify-content: space-between;
+                padding:0 50px;
+                i{
+                    margin-right:11px;
+                    width: 16px;
+                    height: 17px;
+                    border-radius:50%;
+                }
+                .flex_left{
+                    align-items: center;
+                }
+                .alignRight{
+                    align-self:flex-end;
+                }
+            }
+        }
     }
+    .static_cont{
+        padding:0 33px;
+        background:#fff;
+        flex-direction:column;
+        li{
+            width:100%;
+            padding-top:26px;
+        }
+        .static_title{
+            display:block;
+            padding-bottom:8px;
+            color: #999;
+            text-align:center;
+        }
+        .static_info{
+            @include font-dpr(28px); /*px*/
+            justify-content: space-between;
+        }
+        .static_left,.static_right{
+            justify-content: space-between;
+            align-items:center;
+            width:50%;
+            span{
+                width:83px;
+            }
+        }
+        .static_left{
+            padding-right:5px;
+        }
+        .static_left .progress_val{
+            float: right;
+        }
+        .static_right span{
+            text-align:right;
+        }
+        .progress{
+            padding-left:34px;
+            height: 10px;
+            background-color: #efefef;
+        }
+        .progress_val{
+            height: 10px;
+            background-color: #29a871;
+        }
+    }
+}
+
+#canvas_diff{
+    height:144px;
 }

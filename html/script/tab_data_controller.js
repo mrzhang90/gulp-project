@@ -1,5 +1,12 @@
 const React = window.React;
 const Component=React.Component;
+import { Table } from 'antd';
+// 由于 antd 组件的默认文案是英文，所以需要修改为中文
+import zhCN from 'antd/lib/locale-provider/zh_CN';
+// import moment from 'moment';
+// import 'moment/locale/zh-cn';
+// moment.locale('zh-cn');
+import {drawCircle,hello} from './util';
 class ScoreController extends Component{
     constructor(props){
         super(props);
@@ -98,10 +105,119 @@ class ComparedController extends Component{
     render(){
         const services=this.props.services
         return (
-            <div className="tab_score">
+            <div className="tab_diff">
                 <h3 className="title">球队对比</h3>
+                <div className="flex diff_cont">
+                    <DiffComponent id="canvas_diff1" services={services}></DiffComponent>
+                    <DiffComponent id="canvas_diff2" services={services}></DiffComponent>
+                </div>
+            </div>
+        )
+    }
+}
+class DiffComponent extends Component{
+    render(){
+        var props=this.props;
+        return (
+            <div className="diff_col ui-col">
                 <div>
-                    AAA
+                    <canvas id={props.id}>A drawing of someing!</canvas>
+                </div>
+                <div className="diff_dec">中国科学院</div>
+                <ul className="diff_list">
+                    <li className="flex flex_li">
+                        <div className="flex flex_left">
+                            <i className="bgGreen"></i>
+                            <span>两份</span>
+                        </div>
+                        <span className="alignRight">6</span>
+                    </li>
+                    <li className="flex flex_li">
+                        <div className="flex flex_left">
+                            <i className="bgGrey"></i>
+                            <span>两份</span>
+                        </div>
+                        <span className="alignRight">5</span>
+                    </li>
+                    <li className="flex flex_li">
+                        <div className="flex flex_left">
+                            <i className="bgBlack"></i>
+                            <span>两份</span>
+                        </div>
+                        <span>40</span>
+                    </li>
+                </ul>
+            </div>
+        )
+    }
+    componentDidMount(){
+        var data_arr = [0.3, 0.4, 0.3],
+                color_arr = ['#00FF21', '#FFAA00', '#00AABB'],
+                text_arr =['第一季度', '第二季度', '第三季度'];
+        drawCircle('canvas_diff1', data_arr, color_arr, text_arr)
+        var data_arr = [0.3, 0.4, 0.3],
+                color_arr = ['#00FF21', '#FFAA00', '#00AABB'],
+                text_arr =['第一季度', '第二季度', '第三季度'];
+        drawCircle('canvas_diff2', data_arr, color_arr, text_arr)
+    }
+}
+class StatisticsController extends Component{
+    render(){
+        const services=this.props.services
+        return (
+            <div className="tab_static">
+                <h3 className="title">技术统计</h3>
+                <ul className="flex static_cont">
+                    <li>
+                        <span className="static_title">二分%</span>
+                        <div className="flex static_info">
+                            <div className="flex static_left">
+                                <span>62.5</span>
+                                <div className="progress ui-col">
+                                    <div className="progress_val"></div>
+                                </div>
+                            </div>
+                            <div className="flex static_right">
+                                <div className="progress ui-col">
+                                    <div className="progress_val"></div>
+                                </div>
+                                <span>62.5</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <span className="static_title">三分%</span>
+                        <div className="flex static_info">
+                            <div className="flex static_left">
+                                <span>62.5</span>
+                                <div className="progress ui-col">
+                                    <div className="progress_val"></div>
+                                </div>
+                            </div>
+                            <div className="flex static_right">
+                                <div className="progress ui-col">
+                                    <div className="progress_val"></div>
+                                </div>
+                                <span>62.5</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        )
+    }
+}
+class HomedataController extends Component{
+    constructor(props){
+        super(props);
+    }
+    render(){
+        const services=this.props.services
+        return (
+            <div className="tab_static">
+                <h3 className="title">中国科学院-球员数据</h3>
+                <div>
+                    <Table dataSource={services.dataSource} columns={services.columns} />
                 </div>
             </div>
         )
@@ -118,6 +234,8 @@ export default class DataController extends Component{
                 <ScoreController services={services}></ScoreController>
                 <OptimalController services={services}></OptimalController>
                 <ComparedController services={services}></ComparedController>
+                <StatisticsController services={services}></StatisticsController>
+                <HomedataController services={services}></HomedataController>
             </div>
         )
     }
