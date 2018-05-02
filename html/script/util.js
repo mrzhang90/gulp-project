@@ -35,7 +35,7 @@ export function drawCircle(canvasId, data_arr, color_arr, text_arr){
 
                 //画一个空心圆
                 context.beginPath();
-                context.arc(ox, oy, radius, startVal, ssVal-0.02>startVal?ssVal-0.02:ssVal, false);
+                context.arc(ox, oy, radius, startVal, ssVal-0.02>startVal?ssVal-0.04:ssVal, false);
                 context.lineWidth=6;
                 context.strokeStyle=c_color;
                 context.stroke();//画空心圆

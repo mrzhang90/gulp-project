@@ -242,11 +242,15 @@ body,button{
                 text-align:center;
             }
             .diff_list{
+                padding-bottom:30px;
+            }
+            .diff_canvas{
+                
             }
             .flex_li{
                 align-items: center;
                 justify-content: space-between;
-                padding:0 50px;
+                padding:18px 50px 0;
                 i{
                     margin-right:11px;
                     width: 16px;
@@ -266,6 +270,7 @@ body,button{
         padding:0 33px;
         background:#fff;
         flex-direction:column;
+        padding-bottom:20px;
         li{
             width:100%;
             padding-top:26px;
@@ -308,7 +313,36 @@ body,button{
         }
     }
 }
-
+.content_static{
+    background:#fff;
+}
+.table_static{
+    overflow: scroll;
+    li{
+        line-height:64px;
+        text-align:center;
+        white-space:nowrap;
+        span{
+            position: relative;
+            display: inline-block;
+            border-top:solid 1px #cac8c8;
+            width:128px;
+            border-left:solid 1px #cac8c8;
+            i{
+                position: absolute; top: 0; right: 0;
+                width:62px;height:41px;
+                background-image:url("../images/icon4.png");
+                @include bg_set();
+            }
+        }
+        span:first-child{
+            border-left:none;
+        }
+    }
+    li:first-child span{
+        border-top:none;
+    } 
+}
 #canvas_diff{
     height:144px;
 }

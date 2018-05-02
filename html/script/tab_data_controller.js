@@ -1,11 +1,5 @@
 const React = window.React;
 const Component=React.Component;
-import { Table } from 'antd';
-// 由于 antd 组件的默认文案是英文，所以需要修改为中文
-import zhCN from 'antd/lib/locale-provider/zh_CN';
-// import moment from 'moment';
-// import 'moment/locale/zh-cn';
-// moment.locale('zh-cn');
 import {drawCircle,hello} from './util';
 class ScoreController extends Component{
     constructor(props){
@@ -120,7 +114,7 @@ class DiffComponent extends Component{
         var props=this.props;
         return (
             <div className="diff_col ui-col">
-                <div>
+                <div className="diff_canvas">
                     <canvas id={props.id}>A drawing of someing!</canvas>
                 </div>
                 <div className="diff_dec">中国科学院</div>
@@ -152,11 +146,11 @@ class DiffComponent extends Component{
     }
     componentDidMount(){
         var data_arr = [0.3, 0.4, 0.3],
-                color_arr = ['#00FF21', '#FFAA00', '#00AABB'],
+                color_arr = ['#339966', '#cccccc', '#000'],
                 text_arr =['第一季度', '第二季度', '第三季度'];
         drawCircle('canvas_diff1', data_arr, color_arr, text_arr)
-        var data_arr = [0.3, 0.4, 0.3],
-                color_arr = ['#00FF21', '#FFAA00', '#00AABB'],
+        var data_arr = [0.3, 0.2, 0.5],
+                color_arr = ['#339966', '#cccccc', '#000'],
                 text_arr =['第一季度', '第二季度', '第三季度'];
         drawCircle('canvas_diff2', data_arr, color_arr, text_arr)
     }
@@ -208,16 +202,55 @@ class StatisticsController extends Component{
     }
 }
 class HomedataController extends Component{
-    constructor(props){
-        super(props);
+    render(){
+        const services=this.props.services
+        return (
+            <div>
+                <StaticsDataComponent services={services}></StaticsDataComponent>
+                <StaticsDataComponent services={services}></StaticsDataComponent>
+            </div>
+        )
     }
+}
+class StaticsDataComponent extends Component{
     render(){
         const services=this.props.services
         return (
             <div className="tab_static">
                 <h3 className="title">中国科学院-球员数据</h3>
-                <div>
-                    <Table dataSource={services.dataSource} columns={services.columns} />
+                <div className="content_static">
+                    <ul className="table_static">
+                        <li>
+                           <span>球员号</span>
+                           <span>球员</span>
+                           <span>得分</span>
+                           <span>篮板</span>
+                           <span>主攻</span>
+                           <span>投篮</span>
+                           <span>投篮</span>
+                           <span>投篮</span>
+                        </li>
+                        <li>
+                            <span>11<i></i></span>
+                            <span>哈哈哈哈</span>
+                            <span>9</span>
+                            <span>11</span>
+                            <span>11</span>
+                            <span>1</span>
+                           <span>投篮</span>
+                           <span>投篮</span>
+                        </li>
+                        <li>
+                            <span>11</span>
+                            <span>哈哈哈哈</span>
+                            <span>9</span>
+                            <span>11</span>
+                            <span>11</span>
+                            <span>1</span>
+                           <span>投篮</span>
+                           <span>投篮</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         )
