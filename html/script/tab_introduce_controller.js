@@ -5,19 +5,19 @@ export default class IntroduceController extends Component{
         super(props);
     }
     render(){
-        const services=this.props.services
+        const services=this.props.services;
         return (
             <div className="tab_introduce">
                 <h3 className="title">比赛信息</h3>
                 <ul className="list">
                     <li>
-                        <span>{services.bisaiTime}</span>
+                        <span>{services.competingTime}</span>
                     </li>
                     <li>
-                        <span>{services.bisaiAddress}</span>
+                        <span>{services.areanName}</span>
                     </li>
                     <li>
-                        <span>{services.bisaiChangguan}</span>
+                        <span>{services.location}</span>
                     </li>
                 </ul>
             </div>

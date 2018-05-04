@@ -8,7 +8,7 @@ export default class TabComponent extends Component{
         super(props)
     }
     render(){
-        const services=this.props.name
+        const services=this.props.name.data;
         return (
             <TabRouter>
                 <IntroduceController title="简介" services={services}></IntroduceController>

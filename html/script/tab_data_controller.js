@@ -39,7 +39,7 @@ class OptimalController extends Component{
                     <li>
                         <div className="between">
                             <div>
-                                <img src="./images/icon_hometeam-1x.png"/>
+                                <img src="/assets/images/icon_hometeam-1x.png"/>
                                 <span className="pl18">蒲迪</span>
                             </div>
                             <span>17</span>
@@ -49,14 +49,14 @@ class OptimalController extends Component{
                             <span>17</span>
                             <div>
                                 <span className="pr18">蒲迪</span>
-                                <img src="./images/icon_secondteam-1x.png"/>
+                                <img src="/assets/images/icon_secondteam-1x.png"/>
                             </div>
                         </div>
                     </li>
                     <li>
                         <div className="between">
                             <div>
-                                <img src="./images/icon_hometeam-1x.png"/>
+                                <img src="/assets/images/icon_hometeam-1x.png"/>
                                 <span className="pl18">蒲迪</span>
                             </div>
                             <span>17</span>
@@ -66,14 +66,14 @@ class OptimalController extends Component{
                             <span>17</span>
                             <div>
                                 <span className="pr18">蒲迪</span>
-                                <img src="./images/icon_secondteam-1x.png"/>
+                                <img src="/assets/images/icon_secondteam-1x.png"/>
                             </div>
                         </div>
                     </li>
                     <li>
                         <div className="between">
                             <div>
-                                <img src="./images/icon_hometeam-1x.png"/>
+                                <img src="/assets/images/icon_hometeam-1x.png"/>
                                 <span className="pl18">蒲迪</span>
                             </div>
                             <span>17</span>
@@ -83,7 +83,7 @@ class OptimalController extends Component{
                             <span>17</span>
                             <div>
                                 <span className="pr18">蒲迪</span>
-                                <img src="./images/icon_secondteam-1x.png"/>
+                                <img src="/assets/images/icon_secondteam-1x.png"/>
                             </div>
                         </div>
                     </li>
@@ -203,18 +203,31 @@ class StatisticsController extends Component{
 }
 class HomedataController extends Component{
     render(){
-        const services=this.props.services
+        const services=this.props.services.statisticses;
         return (
             <div>
-                <StaticsDataComponent services={services}></StaticsDataComponent>
-                <StaticsDataComponent services={services}></StaticsDataComponent>
+                <StaticsDataComponent services={services[0]}></StaticsDataComponent>
+                <StaticsDataComponent services={services[1]}></StaticsDataComponent>
             </div>
         )
     }
 }
 class StaticsDataComponent extends Component{
     render(){
-        const services=this.props.services
+        const services=this.props.services;
+        const elements=services.map((user)=>{
+            var number = (user.nickName === '球队统计') ?'--':user.number;
+            return <li key={number}>
+                <span>{number}</span>
+                <span>{user.nickName}</span>
+                <span>{user.score}</span>
+                <span>{user.backboard}</span>
+                <span>{user.assists}</span>
+                <span>投篮</span>
+                <span>投篮</span>
+                <span>投篮</span>
+            </li>
+        })
         return (
             <div className="tab_static">
                 <h3 className="title">中国科学院-球员数据</h3>
@@ -225,31 +238,12 @@ class StaticsDataComponent extends Component{
                            <span>球员</span>
                            <span>得分</span>
                            <span>篮板</span>
-                           <span>主攻</span>
+                           <span>助攻</span>
                            <span>投篮</span>
                            <span>投篮</span>
                            <span>投篮</span>
                         </li>
-                        <li>
-                            <span>11<i></i></span>
-                            <span>哈哈哈哈</span>
-                            <span>9</span>
-                            <span>11</span>
-                            <span>11</span>
-                            <span>1</span>
-                           <span>投篮</span>
-                           <span>投篮</span>
-                        </li>
-                        <li>
-                            <span>11</span>
-                            <span>哈哈哈哈</span>
-                            <span>9</span>
-                            <span>11</span>
-                            <span>11</span>
-                            <span>1</span>
-                           <span>投篮</span>
-                           <span>投篮</span>
-                        </li>
+                        {elements}
                     </ul>
                 </div>
             </div>
@@ -265,7 +259,9 @@ export default class DataController extends Component{
         return (
             <div>
                 <ScoreController services={services}></ScoreController>
-                <OptimalController services={services}></OptimalController>
+                {services.status.value ==3 &&
+                    <OptimalController services={services}></OptimalController>
+                }
                 <ComparedController services={services}></ComparedController>
                 <StatisticsController services={services}></StatisticsController>
                 <HomedataController services={services}></HomedataController>

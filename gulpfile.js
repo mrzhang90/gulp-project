@@ -16,7 +16,7 @@ gulp.task('builddev1', () => {
 	}, () => {
         gulp.src('./html/**/*.css')
         .pipe(postcss())
-        .pipe(gulp.dest('./assets'));
+        .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets'));
     });
 });
 gulp.task('builddev2', () => {
@@ -24,7 +24,7 @@ gulp.task('builddev2', () => {
 		ignoreInitial: false //指示chokidar是否应该忽略初始添加事件
 	}, () => {
         gulp.src('./html/**/*.{png,jpg,gif,ico}')
-        .pipe(gulp.dest('./assets'));
+        .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets'));
     });
 });
 // gulp.task('builddev2', () => {
@@ -46,7 +46,7 @@ gulp.task('builddev3', () => {
         .transform(shim)
         .bundle()
         .pipe(source('main.js'))
-        .pipe(gulp.dest('./assets/script'));
+        .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets/script'));
 
         browserify('./html/script/header.js')
         .transform(babelify, {
@@ -55,7 +55,7 @@ gulp.task('builddev3', () => {
         .transform(shim)
         .bundle()
         .pipe(source('header.js'))
-        .pipe(gulp.dest('./assets/script'));
+        .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets/script'));
 
         browserify('./html/script/tab.js')
         .transform(babelify, {
@@ -64,7 +64,7 @@ gulp.task('builddev3', () => {
         .transform(shim)
         .bundle()
         .pipe(source('tab.js'))
-        .pipe(gulp.dest('./assets/script'));
+        .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets/script'));
 
         browserify('./html/script/tab_router.js')
         .transform(babelify, {
@@ -73,7 +73,7 @@ gulp.task('builddev3', () => {
         .transform(shim)
         .bundle()
         .pipe(source('tab_router.js'))
-        .pipe(gulp.dest('./assets/script'));
+        .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets/script'));
 
         browserify('./html/script/tab_data_controller.js')
         .transform(babelify, {
@@ -82,7 +82,7 @@ gulp.task('builddev3', () => {
         .transform(shim)
         .bundle()
         .pipe(source('tab_data_controller.js'))
-        .pipe(gulp.dest('./assets/script'));
+        .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets/script'));
 
         browserify('./html/script/tab_introduce_controller.js')
         .transform(babelify, {
@@ -91,18 +91,27 @@ gulp.task('builddev3', () => {
         .transform(shim)
         .bundle()
         .pipe(source('tab_introduce_controller.js'))
-        .pipe(gulp.dest('./assets/script'));
+        .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets/script'));
+
+        browserify('./html/script/video.js')
+        .transform(babelify, {
+            presets: ['es2015', 'react']
+        })
+        .transform(shim)
+        .bundle()
+        .pipe(source('video.js'))
+        .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets/script'));
     });
 });
-gulp.task('builddev4', () => {
-    return watch('./html/*.html', {
-		ignoreInitial: false //指示chokidar是否应该忽略初始添加事件
-	}, () => {
-        gulp.src('./html/*.html')
-        // .pipe(assetRev())
-        .pipe(gulp.dest('./assets'));
-    });
-});
+// gulp.task('builddev4', () => {
+//     return watch('./html/*.html', {
+// 		ignoreInitial: false //指示chokidar是否应该忽略初始添加事件
+// 	}, () => {
+//         gulp.src('./html/*.html')
+//         // .pipe(assetRev())
+//         .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets'));
+//     });
+// });
 //上线环境的gulp
 gulp.task('buildprod', () => {
     gulp.src('./html/**/*.{png,jpg,gif,ico}')
@@ -116,9 +125,10 @@ gulp.task('buildprod', () => {
             ],       
             use: [pngquant({quality: '65-80'})]    //使用pngquant深度压缩png图片的imagemin插件/quality 压缩的比例最好60-80之间;
         }))
-        .pipe(gulp.dest('./assets'));
+        .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets'));
 });
-gulp.task('del',function () {
-    del('./assets');                               // 构建前先删除dist文件里的旧版本
-})
-gulp.task('default', ['del',process.env.NODE_ENV == "production" ? 'buildprod' : 'builddev1','builddev2','builddev3','builddev4']);
+// gulp.task('del',function () {
+//     del('../apache-tomcat-8.5.30/webapps/ROOT/assets');                               // 构建前先删除dist文件里的旧版本
+// })
+// gulp.task('default', ['del',process.env.NODE_ENV == "production" ? 'buildprod' : 'builddev1','builddev2','builddev3','builddev4']);
+gulp.task('default', [process.env.NODE_ENV == "production" ? 'buildprod' : 'builddev1','builddev2','builddev3']);

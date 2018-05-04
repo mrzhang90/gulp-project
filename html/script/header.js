@@ -7,35 +7,35 @@ class HeaderComponent extends React.Component{
         }
     }
     render(){
-        const services=this.props.name
+        const services=this.props.name.data;
         return (
             <div className="header">
                 <h1 className="title_header">{services.activityName}</h1>
                 <div className="team_header">
                     <div className="FirstTeam">
                         <h2 className="teamTitle">主队</h2>
-                        <div className="teamPhoto"></div>
-                        <h3 className="teamName">{services.firstTeam.teamName}</h3>
-                        {services.state !=0 &&
-                            <p className="teamScore">{services.firstTeam.teamScore}</p>
+                        <div className="teamPhoto" style={{backgroundImage: 'url(' + services.activityLogo + ')'}}></div>
+                        <h3 className="teamName">{services.homeTeamName}</h3>
+                        {services.status !=0 &&
+                            <p className="teamScore">{services.homeTeamScore}</p>
                         }
                     </div>
                     <div className="vs">
-                        <div>{services.stateVal}</div>
-                        {services.state ==3 &&
+                        <div>{services.status.desc}</div>
+                        {services.status.value ==3 &&
                             <button className="lookBank">查看回放</button>
                         }
                     </div>
                     <div className="SecondTeam">
                         <h2 className="teamTitle">客队</h2>
-                        <div className="teamPhoto"></div>
-                        <h3 className="teamName">{services.secondTeam.teamName}</h3>
-                        {services.state !=0 &&
-                            <p className="teamScore">{services.secondTeam.teamScore}</p>
+                        <div className="teamPhoto" style={{backgroundImage: 'url(' + services.homeTeamLogo + ')'}}></div>
+                        <h3 className="teamName">{services.guestTeamName}</h3>
+                        {services.status.value !=0 &&
+                            <p className="teamScore">{services.guestTeamScore}</p>
                         }
                     </div>
                 </div>
-                <div className="currentTime">{services.currentTime}</div>
+                <div className="currentTime">{services.competingTime}</div>
             </div>
         )
     }

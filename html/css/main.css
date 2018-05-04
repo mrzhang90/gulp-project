@@ -77,16 +77,6 @@ body,button{
         text-align:center;
         @include font-dpr(28px); /*px*/
     }
-    .FirstTeam{
-        .teamPhoto{
-            @include bg_img(icon_hometeam);
-        }
-    }
-    .SecondTeam{
-        .teamPhoto{
-            @include bg_img(icon_secondteam);
-        }
-    }
     .team_header{
         display:flex;
         justify-content: space-between;
@@ -110,6 +100,8 @@ body,button{
     .teamPhoto{
         margin:15px auto 0;
         width:96px;height:96px;
+        border-radius:50%;
+        @include bg_set();
     }
     .teamName{
         margin-top:19px;
