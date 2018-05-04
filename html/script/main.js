@@ -41,6 +41,7 @@ class RootComponent extends React.Component{
         axios.get('/gm/game/detail.json?gameId='+gameId)
         .then(function (response) {
             obj=response.data;
+            console.log(obj);
             var services=Object.assign({},{'stateVal':getGameState(obj.status.value)},obj)
             That.setState({
                 services

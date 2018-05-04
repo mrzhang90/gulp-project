@@ -17,7 +17,7 @@ export default class IntroduceController extends Component{
                         <span>{services.areanName}</span>
                     </li>
                     <li>
-                        <span>{services.location}</span>
+                        <span>{services.activityName}</span>
                     </li>
                 </ul>
             </div>

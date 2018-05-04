@@ -13,7 +13,7 @@ class HeaderComponent extends React.Component{
                 <h1 className="title_header">{services.activityName}</h1>
                 <div className="team_header">
                     <div className="FirstTeam">
-                        <h2 className="teamTitle">主队</h2>
+                        <h2 className="teamTitle">主 队</h2>
                         <div className="teamPhoto" style={{backgroundImage: 'url(' + services.activityLogo + ')'}}></div>
                         <h3 className="teamName">{services.homeTeamName}</h3>
                         {services.status !=0 &&

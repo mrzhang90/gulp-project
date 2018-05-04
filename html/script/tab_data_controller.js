@@ -7,20 +7,19 @@ class ScoreController extends Component{
     }
     render(){
         const services=this.props.services;
+
+        const elements=services.map((section)=>{
+            return <li>
+                 <span>{section.homeTeamScore}</span>
+                 <span>{section.name}</span>
+                 <span>{section.guestTeamScore}</span>
+            </li>
+        })
         return (
             <div className="tab_score">
                 <h3 className="title">球队成绩</h3>
                 <ul className="list">
-                    <li>
-                        <span>10</span>
-                        <span>第一节</span>
-                        <span>10</span>
-                    </li>
-                    <li>
-                        <span>10</span>
-                        <span>第一节</span>
-                        <span>10</span>
-                    </li>
+                   {elements}
                 </ul>
             </div>
         )
@@ -31,62 +30,33 @@ class OptimalController extends Component{
         super(props);
     }
     render(){
-        const services=this.props.services;
+        const optimals=this.props.services;
+
+        const elements=optimals.map((optimal)=>{
+            return <li key={optimal.homeTeamUserCount.toString}>
+               <div className="between">
+                  <div>
+                  <img className="teamLogo" src={optimal.homeTeamUserPhoto}/>
+                  <span className="pl18">{optimal.homeTeamUserName}</span>
+                  </div>
+                         <span>{optimal.homeTeamUserCount}</span>
+                    </div>
+                    <span className="middle">得分</span>
+                    <div className="between">
+                         <span>{optimal.guestTeamUserCount}</span>
+                     <div>
+                     <span className="pr18">{optimal.guestTeamUserName}</span>
+                     <img className="teamLogo"  src={optimal.guestTeamUserPhoto}/>
+                     </div>
+                </div>
+            </li>
+        })
+
         return (
             <div className="tab_optimal">
                 <h3 className="title">本场最佳</h3>
                 <ul className="list">
-                    <li>
-                        <div className="between">
-                            <div>
-                                <img src="/assets/images/icon_hometeam-1x.png"/>
-                                <span className="pl18">蒲迪</span>
-                            </div>
-                            <span>17</span>
-                        </div>
-                        <span className="middle">得分</span>
-                        <div className="between">
-                            <span>17</span>
-                            <div>
-                                <span className="pr18">蒲迪</span>
-                                <img src="/assets/images/icon_secondteam-1x.png"/>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div className="between">
-                            <div>
-                                <img src="/assets/images/icon_hometeam-1x.png"/>
-                                <span className="pl18">蒲迪</span>
-                            </div>
-                            <span>17</span>
-                        </div>
-                        <span className="middle">得分</span>
-                        <div className="between">
-                            <span>17</span>
-                            <div>
-                                <span className="pr18">蒲迪</span>
-                                <img src="/assets/images/icon_secondteam-1x.png"/>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div className="between">
-                            <div>
-                                <img src="/assets/images/icon_hometeam-1x.png"/>
-                                <span className="pl18">蒲迪</span>
-                            </div>
-                            <span>17</span>
-                        </div>
-                        <span className="middle">得分</span>
-                        <div className="between">
-                            <span>17</span>
-                            <div>
-                                <span className="pr18">蒲迪</span>
-                                <img src="/assets/images/icon_secondteam-1x.png"/>
-                            </div>
-                        </div>
-                    </li>
+                    {elements}
                 </ul>
             </div>
         )        
@@ -206,8 +176,8 @@ class HomedataController extends Component{
         const services=this.props.services.statisticses;
         return (
             <div>
-                <StaticsDataComponent services={services[0]}></StaticsDataComponent>
-                <StaticsDataComponent services={services[1]}></StaticsDataComponent>
+                <StaticsDataComponent services={services[0]} groupName={this.props.services.homeTeamName} ></StaticsDataComponent>
+                <StaticsDataComponent services={services[1]} groupName={this.props.services.guestTeamName} ></StaticsDataComponent>
             </div>
         )
     }
@@ -215,6 +185,7 @@ class HomedataController extends Component{
 class StaticsDataComponent extends Component{
     render(){
         const services=this.props.services;
+        const groupName = this.props.groupName;
         const elements=services.map((user)=>{
             var number = (user.nickName === '球队统计') ?'--':user.number;
             return <li key={number}>
@@ -223,14 +194,17 @@ class StaticsDataComponent extends Component{
                 <span>{user.score}</span>
                 <span>{user.backboard}</span>
                 <span>{user.assists}</span>
-                <span>投篮</span>
-                <span>投篮</span>
-                <span>投篮</span>
+                <span>{user.shotsSuccessTotal}</span>
+                <span>{user.shotsSuccessTotal}</span>
+                <span>{user.thirdsSuccessTotal}</span>
+                <span>{user.steals}</span>
+                <span>{user.miss}</span>
+                <span>{user.foul}</span>
             </li>
         })
         return (
             <div className="tab_static">
-                <h3 className="title">中国科学院-球员数据</h3>
+                <h3 className="title">{groupName}-球员数据</h3>
                 <div className="content_static">
                     <ul className="table_static">
                         <li>
@@ -240,8 +214,11 @@ class StaticsDataComponent extends Component{
                            <span>篮板</span>
                            <span>助攻</span>
                            <span>投篮</span>
-                           <span>投篮</span>
-                           <span>投篮</span>
+                           <span>三分</span>
+                           <span>罚球</span>
+                           <span>抢断</span>
+                           <span>失误</span>
+                           <span>犯规</span>
                         </li>
                         {elements}
                     </ul>
@@ -258,9 +235,9 @@ export default class DataController extends Component{
         const services=this.props.services
         return (
             <div>
-                <ScoreController services={services}></ScoreController>
+                <ScoreController services={services.sections}></ScoreController>
                 {services.status.value ==3 &&
-                    <OptimalController services={services}></OptimalController>
+                    <OptimalController services={services.optimals}></OptimalController>
                 }
                 <ComparedController services={services}></ComparedController>
                 <StatisticsController services={services}></StatisticsController>
