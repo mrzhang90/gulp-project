@@ -7,7 +7,7 @@ const ReactDOM = window.ReactDOM;
 import HeaderComponent from './header';
 import TabComponent from './tab';
 import axios from 'axios';
-// state=0|1|2|3 未开赛|直播中|已结束|查看回访
+// state=1|2|3|4 未开赛|直播中|已结束|查看回访
 function getGameState(state){
     var _arr=['未开赛','直播中','已结束','查看回访']
     return _arr[state];
@@ -41,8 +41,8 @@ class RootComponent extends React.Component{
         axios.get('/gm/game/detail.json?gameId='+gameId)
         .then(function (response) {
             obj=response.data;
-            console.log(obj);
-            var services=Object.assign({},{'stateVal':getGameState(obj.status.value)},obj)
+            obj.data.status.value=4
+            var services=Object.assign({},{'stateVal':getGameState(obj.data.status.value)},obj)
             That.setState({
                 services
             })

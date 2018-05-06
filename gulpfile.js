@@ -48,59 +48,50 @@ gulp.task('builddev3', () => {
         .pipe(source('main.js'))
         .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets/script'));
 
-        browserify('./html/script/header.js')
-        .transform(babelify, {
-            presets: ['es2015', 'react']
-        })
-        .transform(shim)
-        .bundle()
-        .pipe(source('header.js'))
-        .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets/script'));
+        // browserify('./html/script/header.js')
+        // .transform(babelify, {
+        //     presets: ['es2015', 'react']
+        // })
+        // .transform(shim)
+        // .bundle()
+        // .pipe(source('header.js'))
+        // .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets/script'));
 
-        browserify('./html/script/tab.js')
-        .transform(babelify, {
-            presets: ['es2015', 'react']
-        })
-        .transform(shim)
-        .bundle()
-        .pipe(source('tab.js'))
-        .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets/script'));
+        // browserify('./html/script/tab.js')
+        // .transform(babelify, {
+        //     presets: ['es2015', 'react']
+        // })
+        // .transform(shim)
+        // .bundle()
+        // .pipe(source('tab.js'))
+        // .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets/script'));
 
-        browserify('./html/script/tab_router.js')
-        .transform(babelify, {
-            presets: ['es2015', 'react']
-        })
-        .transform(shim)
-        .bundle()
-        .pipe(source('tab_router.js'))
-        .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets/script'));
+        // browserify('./html/script/tab_router.js')
+        // .transform(babelify, {
+        //     presets: ['es2015', 'react']
+        // })
+        // .transform(shim)
+        // .bundle()
+        // .pipe(source('tab_router.js'))
+        // .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets/script'));
 
-        browserify('./html/script/tab_data_controller.js')
-        .transform(babelify, {
-            presets: ['es2015', 'react']
-        })
-        .transform(shim)
-        .bundle()
-        .pipe(source('tab_data_controller.js'))
-        .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets/script'));
+        // browserify('./html/script/tab_data_controller.js')
+        // .transform(babelify, {
+        //     presets: ['es2015', 'react']
+        // })
+        // .transform(shim)
+        // .bundle()
+        // .pipe(source('tab_data_controller.js'))
+        // .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets/script'));
 
-        browserify('./html/script/tab_introduce_controller.js')
-        .transform(babelify, {
-            presets: ['es2015', 'react']
-        })
-        .transform(shim)
-        .bundle()
-        .pipe(source('tab_introduce_controller.js'))
-        .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets/script'));
-
-        browserify('./html/script/video.js')
-        .transform(babelify, {
-            presets: ['es2015', 'react']
-        })
-        .transform(shim)
-        .bundle()
-        .pipe(source('video.js'))
-        .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets/script'));
+        // browserify('./html/script/tab_introduce_controller.js')
+        // .transform(babelify, {
+        //     presets: ['es2015', 'react']
+        // })
+        // .transform(shim)
+        // .bundle()
+        // .pipe(source('tab_introduce_controller.js'))
+        // .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets/script'));
     });
 });
 // gulp.task('builddev4', () => {

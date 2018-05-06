@@ -1,7 +1,12 @@
-export function drawCircle(canvasId, data_arr, color_arr, text_arr){
+export function drawCircle(canvasId, data_arr, color_arr){
     var drawing = document.getElementById(canvasId);
+    var parent=drawing.parentNode;
+    if(parent.offsetHeight<=0)
+        return;
+    var cHeight=parent.offsetHeight;
+    drawing.width=cHeight;
+    drawing.height=cHeight;
     if(drawing.getContext) {
-        var cHeight=drawing.offsetHeight;
         var context = drawing.getContext('2d');
         var radius = drawing.height/2 -20,//半径
             ox = radius +20, oy = radius +20;//圆心
@@ -13,7 +18,7 @@ export function drawCircle(canvasId, data_arr, color_arr, text_arr){
         // context.strokeStyle = 'Purple';
         // context.lineWidth = 3;
         // context.strokeRect(0, 0, drawing.width, drawing.height);
-        var len=data_arr.length;
+        var len=data_arr.length,count=eval(data_arr.join("+"));
         var timer;
         document.body.onclick=function(){
             clearInterval(timer)
@@ -22,7 +27,7 @@ export function drawCircle(canvasId, data_arr, color_arr, text_arr){
             //三段-先加载第一段
             //设置起始值和结束值
             //开启画圆动画，从起始值画到结束值结束动画
-            endAngle += data_arr[i] * 2*Math.PI;
+            endAngle += (1/count*data_arr[i]).toFixed(5) * 2*Math.PI;
             var startVal=startAngle,
                 ssVal=startAngle,
                 stopVal=endAngle,
@@ -45,7 +50,7 @@ export function drawCircle(canvasId, data_arr, color_arr, text_arr){
                 context.fillStyle = '#1d89d5';
                 context.font= fontSize + 'px Microsoft Yahei';
                 context.textAlign='center';
-                context.fillText('100%', (cHeight/2), (cHeight/2));
+                context.fillText(count, (cHeight/2), (cHeight/2)+(fontSize/3));
                 if(ssVal==endAngle){
                     clearInterval(timer)
                     // setTimeout(function(){

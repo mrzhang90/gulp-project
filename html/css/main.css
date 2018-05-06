@@ -88,9 +88,11 @@ body,button{
             text-align:center;
         }
         .lookBank{
+            display:block;
             margin-top:38px;
             width: 120px;
 	        height: 46px;
+	        line-height: 46px;
             background-color: #29a871;
             border-radius: 23px;
             color:#fff;
@@ -121,10 +123,13 @@ body,button{
         display: flex;
         text-align:center;
         background:#fff;
+        a{
+            display: block;
+            color: #999;
+        }
         .ui-col{
             position:relative;
             @include font-dpr(28px); /*px*/
-            color: #999;
         }
         .ui-col:after{
             content:"";
@@ -244,7 +249,8 @@ body,button{
                 padding-bottom:30px;
             }
             .diff_canvas{
-                
+                display:flex;
+                justify-content: center;
             }
             .flex_li{
                 align-items: center;

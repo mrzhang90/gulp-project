@@ -7,9 +7,8 @@ class ScoreController extends Component{
     }
     render(){
         const services=this.props.services;
-
-        const elements=services.map((section)=>{
-            return <li>
+        const elements=services.map((section,index)=>{
+            return <li key={index}>
                  <span>{section.homeTeamScore}</span>
                  <span>{section.name}</span>
                  <span>{section.guestTeamScore}</span>
@@ -115,14 +114,12 @@ class DiffComponent extends Component{
         )
     }
     componentDidMount(){
-        var data_arr = [0.3, 0.4, 0.3],
-                color_arr = ['#339966', '#cccccc', '#000'],
-                text_arr =['第一季度', '第二季度', '第三季度'];
-        drawCircle('canvas_diff1', data_arr, color_arr, text_arr)
-        var data_arr = [0.3, 0.2, 0.5],
-                color_arr = ['#339966', '#cccccc', '#000'],
-                text_arr =['第一季度', '第二季度', '第三季度'];
-        drawCircle('canvas_diff2', data_arr, color_arr, text_arr)
+        var data_arr = [6,5,10],
+                color_arr = ['#339966', '#cccccc', '#000'];
+        drawCircle('canvas_diff1', data_arr, color_arr)
+        var data_arr = [5,11,40],
+                color_arr = ['#339966', '#cccccc', '#000'];
+        drawCircle('canvas_diff2', data_arr, color_arr)
     }
 }
 class StatisticsController extends Component{
@@ -138,12 +135,12 @@ class StatisticsController extends Component{
                             <div className="flex static_left">
                                 <span>62.5</span>
                                 <div className="progress ui-col">
-                                    <div className="progress_val"></div>
+                                    <div className="progress_val" style={{width:'80%'}}></div>
                                 </div>
                             </div>
                             <div className="flex static_right">
                                 <div className="progress ui-col">
-                                    <div className="progress_val"></div>
+                                    <div className="progress_val" style={{width:'60%'}}></div>
                                 </div>
                                 <span>62.5</span>
                             </div>

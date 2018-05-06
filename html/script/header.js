@@ -8,6 +8,8 @@ class HeaderComponent extends React.Component{
     }
     render(){
         const services=this.props.name.data;
+        console.log(1,services)
+        let href=`../video/${gameId}`
         return (
             <div className="header">
                 <h1 className="title_header">{services.activityName}</h1>
@@ -22,8 +24,8 @@ class HeaderComponent extends React.Component{
                     </div>
                     <div className="vs">
                         <div>{services.status.desc}</div>
-                        {services.status.value ==3 &&
-                            <button className="lookBank">查看回放</button>
+                        {services.status.value ==4 &&
+                            <a href={href} className="lookBank">查看回放</a>
                         }
                     </div>
                     <div className="SecondTeam">
