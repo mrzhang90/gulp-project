@@ -304,11 +304,14 @@ body,button{
         .static_left .progress_val{
             float: right;
         }
+        .static_right .progress_val{
+            float: left;
+        }
         .static_right span{
             text-align:right;
         }
         .progress{
-            padding-left:34px;
+            /*padding-left:34px;*/
             height: 10px;
             background-color: #efefef;
         }

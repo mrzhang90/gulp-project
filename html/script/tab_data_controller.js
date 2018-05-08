@@ -71,8 +71,8 @@ class ComparedController extends Component{
             <div className="tab_diff">
                 <h3 className="title">球队对比</h3>
                 <div className="flex diff_cont">
-                    <DiffComponent id="canvas_diff1" services={services}></DiffComponent>
-                    <DiffComponent id="canvas_diff2" services={services}></DiffComponent>
+                    <DiffComponent id="canvas_diff1" services={services} isHost={true}></DiffComponent>
+                    <DiffComponent id="canvas_diff2" services={services} isHost={false}></DiffComponent>
                 </div>
             </div>
         )
@@ -81,50 +81,82 @@ class ComparedController extends Component{
 class DiffComponent extends Component{
     render(){
         var props=this.props;
+
+        var teamName=props.isHost?props.services.homeTeamName:props.services.guestTeamName;
+        var teamStatisticses =  props.isHost?props.services.statisticses[0]:props.services.statisticses[1];
+        var statisticseUser = teamStatisticses[teamStatisticses.length - 1];
+
         return (
             <div className="diff_col ui-col">
                 <div className="diff_canvas">
                     <canvas id={props.id}>A drawing of someing!</canvas>
                 </div>
-                <div className="diff_dec">中国科学院</div>
+                <div className="diff_dec">{teamName}</div>
                 <ul className="diff_list">
                     <li className="flex flex_li">
                         <div className="flex flex_left">
-                            <i className="bgGreen"></i>
-                            <span>两份</span>
-                        </div>
-                        <span className="alignRight">6</span>
-                    </li>
-                    <li className="flex flex_li">
-                        <div className="flex flex_left">
                             <i className="bgGrey"></i>
-                            <span>两份</span>
+                            <span>两分</span>
                         </div>
-                        <span className="alignRight">5</span>
+                        <span className="alignRight">{statisticseUser.shotsSuccessTotal*2}</span>
                     </li>
                     <li className="flex flex_li">
                         <div className="flex flex_left">
                             <i className="bgBlack"></i>
-                            <span>两份</span>
+                            <span>三分</span>
                         </div>
-                        <span>40</span>
+                        <span>{statisticseUser.thirdsSuccessTotal*3}</span>
+                    </li>
+                    <li className="flex flex_li">
+                        <div className="flex flex_left">
+                            <i className="bgGreen"></i>
+                            <span>罚球</span>
+                        </div>
+                        <span className="alignRight">{statisticseUser.penaltySuccessTotal}</span>
                     </li>
                 </ul>
             </div>
         )
     }
     componentDidMount(){
-        var data_arr = [6,5,10],
-                color_arr = ['#339966', '#cccccc', '#000'];
+        var cprops=this.props;
+        var homeTeams =  cprops.services.statisticses[0];
+        var guestTeams =  cprops.services.statisticses[1];
+        var homeTeam = homeTeams[homeTeams.length - 1];
+        var guestTeam = guestTeams[guestTeams.length - 1];
+
+        var data_arr = [homeTeam.shotsSuccessTotal*2,homeTeam.thirdsSuccessTotal*3,homeTeam.penaltySuccessTotal],
+                color_arr = [ '#cccccc','#000', '#339966'];
         drawCircle('canvas_diff1', data_arr, color_arr)
-        var data_arr = [5,11,40],
-                color_arr = ['#339966', '#cccccc', '#000'];
+        var data_arr = [guestTeam.shotsSuccessTotal*2,guestTeam.thirdsSuccessTotal*3,guestTeam.penaltySuccessTotal],
+                color_arr = ['#cccccc','#000', '#339966'];
         drawCircle('canvas_diff2', data_arr, color_arr)
     }
 }
 class StatisticsController extends Component{
     render(){
         const services=this.props.services
+
+        var homeTeams =  services.statisticses[0];
+        var guestTeams =  services.statisticses[1];
+        var homeTeam = homeTeams[homeTeams.length - 1];
+        var guestTeam = guestTeams[guestTeams.length - 1];
+        var homeTwoLoad =  ((homeTeam.shotsSuccessTotal==0) && (guestTeam.shotsSuccessTotal==0))?50: parseInt(homeTeam.shotsSuccessTotal/(homeTeam.shotsSuccessTotal+guestTeam.shotsSuccessTotal)*100);
+        var guestTwoLoad = 100-homeTwoLoad;
+        var homeThreeLoad =((homeTeam.thirdsSuccessTotal==0) && (guestTeam.thirdsSuccessTotal==0))?50: parseInt(homeTeam.thirdsSuccessTotal/(homeTeam.thirdsSuccessTotal+guestTeam.thirdsSuccessTotal)*100);
+        var guestThreeLoad = 100-homeThreeLoad;
+        var homePenaltyLoad = ((homeTeam.penaltySuccessTotal==0) && (guestTeam.penaltySuccessTotal==0))?50:parseInt(homeTeam.penaltySuccessTotal/(homeTeam.penaltySuccessTotal+guestTeam.penaltySuccessTotal)*100);
+        var guestPenaltyLoad = 100-homePenaltyLoad;
+        var homeBackboardLoad =((homeTeam.backboard==0) && (guestTeam.backboard==0))?50: parseInt(homeTeam.backboard/(homeTeam.backboard+guestTeam.backboard)*100);
+        var guestBackboardLoad = 100-homeBackboardLoad;
+        var homeAssistsLoad =((homeTeam.assists==0) && (guestTeam.assists==0))?50: parseInt(homeTeam.assists/(homeTeam.assists+guestTeam.assists)*100);
+        var guestAssistsLoad = 100-homeAssistsLoad;
+        var homeStealsLoad =((homeTeam.steals==0) && (guestTeam.steals==0))?50: parseInt(homeTeam.steals/(homeTeam.steals+guestTeam.steals)*100);
+        var guestStealsLoad = 100-homeStealsLoad;
+        var homeMissLoad =((homeTeam.miss==0) && (guestTeam.miss==0))?50: parseInt(homeTeam.miss/(homeTeam.miss+guestTeam.miss)*100);
+        var guestMissLoad = 100-homeMissLoad;
+        var homeFoulLoad =((homeTeam.foul==0) && (guestTeam.foul==0))?50: parseInt(homeTeam.foul/(homeTeam.foul+guestTeam.foul)*100);
+        var guestFoulLoad = 100-homeFoulLoad;
         return (
             <div className="tab_static">
                 <h3 className="title">技术统计</h3>
@@ -133,16 +165,16 @@ class StatisticsController extends Component{
                         <span className="static_title">二分%</span>
                         <div className="flex static_info">
                             <div className="flex static_left">
-                                <span>62.5</span>
+                                <span>{homeTwoLoad}</span>
                                 <div className="progress ui-col">
-                                    <div className="progress_val" style={{width:'80%'}}></div>
+                                    <div className="progress_val" style={{width:homeTwoLoad+'%'}}></div>
                                 </div>
                             </div>
                             <div className="flex static_right">
                                 <div className="progress ui-col">
-                                    <div className="progress_val" style={{width:'60%'}}></div>
+                                    <div className="progress_val" style={{width:guestTwoLoad+'%'}}></div>
                                 </div>
-                                <span>62.5</span>
+                                <span>{guestTwoLoad}</span>
                             </div>
                         </div>
                     </li>
@@ -150,16 +182,118 @@ class StatisticsController extends Component{
                         <span className="static_title">三分%</span>
                         <div className="flex static_info">
                             <div className="flex static_left">
-                                <span>62.5</span>
+                                <span>{homeThreeLoad}</span>
                                 <div className="progress ui-col">
-                                    <div className="progress_val"></div>
+                                    <div className="progress_val" style={{width:homeThreeLoad+'%'}}></div>
                                 </div>
                             </div>
                             <div className="flex static_right">
                                 <div className="progress ui-col">
-                                    <div className="progress_val"></div>
+                                    <div className="progress_val" style={{width:guestThreeLoad+'%'}}></div>
                                 </div>
-                                <span>62.5</span>
+                                <span>{guestThreeLoad}</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <span className="static_title">罚球%</span>
+                        <div className="flex static_info">
+                            <div className="flex static_left">
+                                <span>{homePenaltyLoad}</span>
+                                <div className="progress ui-col">
+                                    <div className="progress_val" style={{width:homePenaltyLoad+'%'}}></div>
+                                </div>
+                            </div>
+                            <div className="flex static_right">
+                                <div className="progress ui-col">
+                                    <div className="progress_val" style={{width:guestPenaltyLoad+'%'}}></div>
+                                </div>
+                                <span>{guestPenaltyLoad}</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <span className="static_title">篮板</span>
+                        <div className="flex static_info">
+                            <div className="flex static_left">
+                                <span>{homeBackboardLoad}</span>
+                                <div className="progress ui-col">
+                                    <div className="progress_val" style={{width:homeBackboardLoad+'%'}}></div>
+                                </div>
+                            </div>
+                            <div className="flex static_right">
+                                <div className="progress ui-col">
+                                    <div className="progress_val" style={{width:guestBackboardLoad+'%'}}></div>
+                                </div>
+                                <span>{guestBackboardLoad}</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <span className="static_title">助攻</span>
+                        <div className="flex static_info">
+                            <div className="flex static_left">
+                                <span>{homeAssistsLoad}</span>
+                                <div className="progress ui-col">
+                                    <div className="progress_val" style={{width:homeAssistsLoad+'%'}}></div>
+                                </div>
+                            </div>
+                            <div className="flex static_right">
+                                <div className="progress ui-col">
+                                    <div className="progress_val" style={{width:guestAssistsLoad+'%'}}></div>
+                                </div>
+                                <span>{guestAssistsLoad}</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <span className="static_title">抢断</span>
+                        <div className="flex static_info">
+                            <div className="flex static_left">
+                                <span>{homeStealsLoad}</span>
+                                <div className="progress ui-col">
+                                    <div className="progress_val" style={{width:homeStealsLoad+'%'}}></div>
+                                </div>
+                            </div>
+                            <div className="flex static_right">
+                                <div className="progress ui-col">
+                                    <div className="progress_val" style={{width:guestStealsLoad+'%'}}></div>
+                                </div>
+                                <span>{guestStealsLoad}</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <span className="static_title">失误</span>
+                        <div className="flex static_info">
+                            <div className="flex static_left">
+                                <span>{homeMissLoad}</span>
+                                <div className="progress ui-col">
+                                    <div className="progress_val" style={{width:homeMissLoad+'%'}}></div>
+                                </div>
+                            </div>
+                            <div className="flex static_right">
+                                <div className="progress ui-col">
+                                    <div className="progress_val" style={{width:guestMissLoad+'%'}}></div>
+                                </div>
+                                <span>{guestMissLoad}</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <span className="static_title">犯规</span>
+                        <div className="flex static_info">
+                            <div className="flex static_left">
+                                <span>{homeFoulLoad}</span>
+                                <div className="progress ui-col">
+                                    <div className="progress_val" style={{width:homeFoulLoad+'%'}}></div>
+                                </div>
+                            </div>
+                            <div className="flex static_right">
+                                <div className="progress ui-col">
+                                    <div className="progress_val" style={{width:guestFoulLoad+'%'}}></div>
+                                </div>
+                                <span>{guestFoulLoad}</span>
                             </div>
                         </div>
                     </li>
