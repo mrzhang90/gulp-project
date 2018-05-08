@@ -306,20 +306,19 @@ class HomedataController extends Component{
         const services=this.props.services.statisticses;
         return (
             <div>
-                <StaticsDataComponent services={services[0]} groupName={this.props.services.homeTeamName} ></StaticsDataComponent>
-                <StaticsDataComponent services={services[1]} groupName={this.props.services.guestTeamName} ></StaticsDataComponent>
+                <StaticsDataComponent services={services[0]} gmTeamId={this.props.services.homeGameTeamId} groupName={this.props.services.homeTeamName} ></StaticsDataComponent>
+                <StaticsDataComponent services={services[1]} gmTeamId={this.props.services.guestGameTeamId} groupName={this.props.services.guestTeamName} ></StaticsDataComponent>
             </div>
         )
     }
 }
 class StaticsDataComponent extends Component{
-    constructor(props){
-        super(props)
-        // this.handleClick=this.handleClick.bind(this)
-    }
-    handleClick(){
-        console.log(this)
-        console.log(arguments)
+    handleClick(recordId,isUser){
+        if(isUser==0){
+            alert('临时球员')
+            return;
+        }
+        window.location.href=`/gm/game/member/${recordId}?gmTeamId=${this.props.gmTeamId}`
     }
     render(){
         const services=this.props.services;
@@ -328,7 +327,7 @@ class StaticsDataComponent extends Component{
             var number = (user.nickName === '球队统计') ?'--':user.number;
             return <li key={index}>
                 <span>{number}</span>
-                <span onClick={this.handleClick}>{user.nickName}</span>
+                <span onClick={this.handleClick.bind(this,user.recordId,user.isUser.value)}>{user.nickName}</span>
             </li>
         })
         const elements2=services.map((user,index)=>{
