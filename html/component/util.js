@@ -3,18 +3,20 @@ export function drawCircle(canvasId, data_arr, color_arr){
     var parent=drawing.parentNode;
     if(parent.offsetHeight<=0)
         return;
-    var cHeight=parent.offsetHeight;
-    drawing.width=cHeight;
+    var cHeight=drawing.width;
+    // drawing.width=cHeight;
     drawing.height=cHeight;
+    // console.log(drawing.width)
     if(drawing.getContext) {
         var context = drawing.getContext('2d');
-        var radius = drawing.height/2 -20,//半径
-            ox = radius +20, oy = radius +20;//圆心
+        var lineWidth=12;
+        var radius = drawing.height/2 -lineWidth*2,//半径
+            ox = radius +lineWidth*2, oy = radius +lineWidth*2;//圆心
         var width = 30, height = 10, //图例宽高
-            posX = ox * 2 +20, posY = 30;//图例位置
+            posX = ox * 2 +lineWidth*2, posY = 30;//图例位置
         var textX = posX + width + 5, textY = posY + 10;//文本位置
         var startAngle = 0, endAngle = 0;//起始、结束弧度
-        var fontSize = 20; //字号大小
+        var fontSize = 40; //字号大小
         // context.strokeStyle = 'Purple';
         // context.lineWidth = 3;
         // context.strokeRect(0, 0, drawing.width, drawing.height);
@@ -41,7 +43,7 @@ export function drawCircle(canvasId, data_arr, color_arr){
                 //画一个空心圆
                 context.beginPath();
                 context.arc(ox, oy, radius, startVal, ssVal-0.02>startVal?ssVal-0.04:ssVal, false);
-                context.lineWidth=6;
+                context.lineWidth=lineWidth;
                 context.strokeStyle=c_color;
                 context.stroke();//画空心圆
                 context.closePath();

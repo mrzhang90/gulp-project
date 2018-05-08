@@ -28,6 +28,7 @@
 .ui-col{
     flex:1;
 }
+.zoom5{zoom:0.5}
 .pl18{
     padding-left:18px;
 }
@@ -48,6 +49,16 @@
 }
 .bgBlack{
     background-color: #000;
+}
+.width256{
+    width:256px;
+}
+.ol_scroll{
+    overflow: scroll;
+}
+.center{
+    position: fixed;left:50%;top:50%;
+    transform:translate(-50%,-50%);
 }
 html,body{
     min-height:100%;
@@ -84,15 +95,15 @@ body,button{
         height:240px;
         text-align:center;
         .vs{
-            padding-top:47px;
+            padding-top:73px;
             text-align:center;
         }
         .lookBank{
             display:block;
-            margin-top:38px;
-            width: 120px;
-	        height: 46px;
-	        line-height: 46px;
+            margin-top:35px;
+            width: 130px;
+	        height: 56px;
+	        line-height: 56px;
             background-color: #29a871;
             border-radius: 23px;
             color:#fff;
@@ -157,7 +168,7 @@ body,button{
             line-height:80px;
             background:#fff;
             li{
-                border-bottom:solid 1px #efefef;
+                border-bottom:solid 1px #efefef; /*no*/
             }
         }
         .tab_introduce{
@@ -322,10 +333,24 @@ body,button{
     }
 }
 .content_static{
+    position: relative;
     background:#fff;
 }
+.table_static:first-child{
+    position: relative;
+    z-index:2;
+    li{
+        span:last-child{
+            border-right:solid 1px #cac8c8; /*no*/
+        }
+    }
+}
+.table_static:nth-child(2){
+    padding-left:256px;
+    position: absolute;top:0;left:0;
+    width:calc(100vw - 3.413333rem);
+}
 .table_static{
-    overflow: scroll;
     li{
         line-height:64px;
         text-align:center;
@@ -333,9 +358,10 @@ body,button{
         span{
             position: relative;
             display: inline-block;
-            border-top:solid 1px #cac8c8;
+            border-top:solid 1px #cac8c8; /*no*/
+            border-right:solid 1px #cac8c8; /*no*/
             width:128px;
-            border-left:solid 1px #cac8c8;
+            background:#fff;
             i{
                 position: absolute; top: 0; right: 0;
                 width:62px;height:41px;
@@ -343,14 +369,14 @@ body,button{
                 @include bg_set();
             }
         }
-        span:first-child{
-            border-left:none;
+        span:last-child{
+            border-right:none;
         }
     }
     li:first-child span{
         border-top:none;
     } 
 }
-#canvas_diff{
-    height:144px;
+#canvas_diff1,#canvas_diff2{
+    /* width:150px;height:150px; */
 }

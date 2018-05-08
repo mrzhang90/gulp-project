@@ -10,7 +10,7 @@ const babelify = require('babelify');
 const source = require('vinyl-source-stream');
 const del = require('del')
 //开发环境的gulp
-gulp.task('builddev1', () => {
+gulp.task('build_css', () => {
     return watch('./html/**/*.css', {
 		ignoreInitial: false //指示chokidar是否应该忽略初始添加事件
 	}, () => {
@@ -19,7 +19,7 @@ gulp.task('builddev1', () => {
         .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets'));
     });
 });
-gulp.task('builddev2', () => {
+gulp.task('build_img', () => {
     return watch('./html/**/*.{png,jpg,gif,ico}', {
 		ignoreInitial: false //指示chokidar是否应该忽略初始添加事件
 	}, () => {
@@ -27,19 +27,19 @@ gulp.task('builddev2', () => {
         .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets'));
     });
 });
-// gulp.task('builddev2', () => {
-//     return watch('./html/script/*.js', {
-// 		ignoreInitial: false //指示chokidar是否应该忽略初始添加事件
-// 	}, () => {
-//         gulp.src('./html/script/*.js')
-//         .pipe(gulp.dest('./dest'));
-//     });
-// });
-gulp.task('builddev3', () => {
+gulp.task('build_js', () => {
     return watch('./html/script/*.js', {
 		ignoreInitial: false //指示chokidar是否应该忽略初始添加事件
 	}, () => {
-        browserify('./html/script/main.js')
+        gulp.src('./html/script/*.js')
+        .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets/script/'));
+    });
+});
+gulp.task('build_component', () => {
+    return watch('./html/component/*.js', {
+		ignoreInitial: false //指示chokidar是否应该忽略初始添加事件
+	}, () => {
+        browserify('./html/component/main.js')
         .transform(babelify, {
             presets: ['es2015', 'react']
         })
@@ -47,62 +47,17 @@ gulp.task('builddev3', () => {
         .bundle()
         .pipe(source('main.js'))
         .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets/script'));
-
-        // browserify('./html/script/header.js')
-        // .transform(babelify, {
-        //     presets: ['es2015', 'react']
-        // })
-        // .transform(shim)
-        // .bundle()
-        // .pipe(source('header.js'))
-        // .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets/script'));
-
-        // browserify('./html/script/tab.js')
-        // .transform(babelify, {
-        //     presets: ['es2015', 'react']
-        // })
-        // .transform(shim)
-        // .bundle()
-        // .pipe(source('tab.js'))
-        // .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets/script'));
-
-        // browserify('./html/script/tab_router.js')
-        // .transform(babelify, {
-        //     presets: ['es2015', 'react']
-        // })
-        // .transform(shim)
-        // .bundle()
-        // .pipe(source('tab_router.js'))
-        // .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets/script'));
-
-        // browserify('./html/script/tab_data_controller.js')
-        // .transform(babelify, {
-        //     presets: ['es2015', 'react']
-        // })
-        // .transform(shim)
-        // .bundle()
-        // .pipe(source('tab_data_controller.js'))
-        // .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets/script'));
-
-        // browserify('./html/script/tab_introduce_controller.js')
-        // .transform(babelify, {
-        //     presets: ['es2015', 'react']
-        // })
-        // .transform(shim)
-        // .bundle()
-        // .pipe(source('tab_introduce_controller.js'))
-        // .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets/script'));
     });
 });
-// gulp.task('builddev4', () => {
-//     return watch('./html/*.html', {
-// 		ignoreInitial: false //指示chokidar是否应该忽略初始添加事件
-// 	}, () => {
-//         gulp.src('./html/*.html')
-//         // .pipe(assetRev())
-//         .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/assets'));
-//     });
-// });
+gulp.task('build_jsp', () => {
+    return watch('./html/*.jsp', {
+		ignoreInitial: false //指示chokidar是否应该忽略初始添加事件
+	}, () => {
+        gulp.src('./html/*.jsp')
+        // .pipe(assetRev())
+        .pipe(gulp.dest('../apache-tomcat-8.5.30/webapps/ROOT/WEB-INF/jsp/gm/game'));
+    });
+});
 //上线环境的gulp
 gulp.task('buildprod', () => {
     gulp.src('./html/**/*.{png,jpg,gif,ico}')
@@ -122,4 +77,4 @@ gulp.task('buildprod', () => {
 //     del('../apache-tomcat-8.5.30/webapps/ROOT/assets');                               // 构建前先删除dist文件里的旧版本
 // })
 // gulp.task('default', ['del',process.env.NODE_ENV == "production" ? 'buildprod' : 'builddev1','builddev2','builddev3','builddev4']);
-gulp.task('default', [process.env.NODE_ENV == "production" ? 'buildprod' : 'builddev1','builddev2','builddev3']);
+gulp.task('default', [process.env.NODE_ENV == "production" ? 'buildprod' : 'build_css','build_img','build_js','build_component','build_jsp']);

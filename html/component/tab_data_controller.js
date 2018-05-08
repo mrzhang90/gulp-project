@@ -77,6 +77,20 @@ class ComparedController extends Component{
             </div>
         )
     }
+    componentDidMount(){
+        var cprops=this.props;
+        var homeTeams =  cprops.services.statisticses[0];
+        var guestTeams =  cprops.services.statisticses[1];
+        var homeTeam = homeTeams[homeTeams.length - 1];
+        var guestTeam = guestTeams[guestTeams.length - 1];
+
+        var data_arr = [homeTeam.shotsSuccessTotal*2,homeTeam.thirdsSuccessTotal*3,homeTeam.penaltySuccessTotal],
+                color_arr = [ '#cccccc','#000', '#339966'];
+        drawCircle('canvas_diff1', data_arr, color_arr)
+        var data_arr = [guestTeam.shotsSuccessTotal*2,guestTeam.thirdsSuccessTotal*3,guestTeam.penaltySuccessTotal],
+                color_arr = ['#cccccc','#000', '#339966'];
+        drawCircle('canvas_diff2', data_arr, color_arr)
+    }
 }
 class DiffComponent extends Component{
     render(){
@@ -85,11 +99,10 @@ class DiffComponent extends Component{
         var teamName=props.isHost?props.services.homeTeamName:props.services.guestTeamName;
         var teamStatisticses =  props.isHost?props.services.statisticses[0]:props.services.statisticses[1];
         var statisticseUser = teamStatisticses[teamStatisticses.length - 1];
-
         return (
             <div className="diff_col ui-col">
-                <div className="diff_canvas">
-                    <canvas id={props.id}>A drawing of someing!</canvas>
+                <div className="diff_canvas zoom5">
+                    <canvas id={props.id}></canvas>
                 </div>
                 <div className="diff_dec">{teamName}</div>
                 <ul className="diff_list">
@@ -117,20 +130,6 @@ class DiffComponent extends Component{
                 </ul>
             </div>
         )
-    }
-    componentDidMount(){
-        var cprops=this.props;
-        var homeTeams =  cprops.services.statisticses[0];
-        var guestTeams =  cprops.services.statisticses[1];
-        var homeTeam = homeTeams[homeTeams.length - 1];
-        var guestTeam = guestTeams[guestTeams.length - 1];
-
-        var data_arr = [homeTeam.shotsSuccessTotal*2,homeTeam.thirdsSuccessTotal*3,homeTeam.penaltySuccessTotal],
-                color_arr = [ '#cccccc','#000', '#339966'];
-        drawCircle('canvas_diff1', data_arr, color_arr)
-        var data_arr = [guestTeam.shotsSuccessTotal*2,guestTeam.thirdsSuccessTotal*3,guestTeam.penaltySuccessTotal],
-                color_arr = ['#cccccc','#000', '#339966'];
-        drawCircle('canvas_diff2', data_arr, color_arr)
     }
 }
 class StatisticsController extends Component{
@@ -314,14 +313,27 @@ class HomedataController extends Component{
     }
 }
 class StaticsDataComponent extends Component{
+    constructor(props){
+        super(props)
+        // this.handleClick=this.handleClick.bind(this)
+    }
+    handleClick(){
+        console.log(this)
+        console.log(arguments)
+    }
     render(){
         const services=this.props.services;
         const groupName = this.props.groupName;
-        const elements=services.map((user)=>{
+        const elements1=services.map((user,index)=>{
             var number = (user.nickName === '球队统计') ?'--':user.number;
-            return <li key={number}>
+            return <li key={index}>
                 <span>{number}</span>
-                <span>{user.nickName}</span>
+                <span onClick={this.handleClick}>{user.nickName}</span>
+            </li>
+        })
+        const elements2=services.map((user,index)=>{
+            var number = (user.nickName === '球队统计') ?'--':user.number;
+            return <li key={index}>
                 <span>{user.score}</span>
                 <span>{user.backboard}</span>
                 <span>{user.assists}</span>
@@ -337,10 +349,15 @@ class StaticsDataComponent extends Component{
             <div className="tab_static">
                 <h3 className="title">{groupName}-球员数据</h3>
                 <div className="content_static">
-                    <ul className="table_static">
+                    <ul className="table_static width256">
                         <li>
                            <span>球员号</span>
                            <span>球员</span>
+                        </li>
+                        {elements1}
+                    </ul>
+                    <ul className="table_static ol_scroll">
+                        <li>
                            <span>得分</span>
                            <span>篮板</span>
                            <span>助攻</span>
@@ -351,8 +368,8 @@ class StaticsDataComponent extends Component{
                            <span>失误</span>
                            <span>犯规</span>
                         </li>
-                        {elements}
-                    </ul>
+                        {elements2}
+                   </ul>
                 </div>
             </div>
         )
