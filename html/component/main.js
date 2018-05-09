@@ -60,4 +60,4 @@ class RootComponent extends React.Component{
 ReactDOM.render(
     <RootComponent></RootComponent>,
     document.getElementById('root')
-  );
+);
