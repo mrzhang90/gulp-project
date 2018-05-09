@@ -1,9 +1,9 @@
 const React = window.React;
-class Header extends React.component{
+class Header extends React.Component{
     render(){
         return(
             <div className="header">
-
+                hello world
             </div>
         )
     }
