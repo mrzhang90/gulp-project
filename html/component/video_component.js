@@ -119,18 +119,26 @@ class VideoComponent  extends React.Component{
 
         const messages=this.state.messages;
         const element=messages.map((message,index)=>{
-            return <li key={index}>
-                <span>{message.username}</span>
-                <span>{message.msg}</span>
-            </li>
+            if (message.msg == '加入聊天室！！') {
+                return <li key={index}>
+                      <span className="messageUserName">{message.username}{'\n\n'}</span>
+                      <span className="messageUserDoSomething">{message.msg}</span>
+                     </li>
+            }else{
+                     return <li key={index}>
+                      <span className="messageUserName">{message.username}:</span>
+                      <span className="messageUserSaySomething">{message.msg}</span>
+                     </li>
+            }
+            
         })
 
-        console.log(this.state.messages)
+        // console.log(this.state.messages)
         return (
         <div className="component">
-              <lu>
+              <ul>
                 {element}
-              </lu>
+              </ul>
         
         </div>
     )

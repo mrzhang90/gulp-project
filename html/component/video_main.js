@@ -16,7 +16,7 @@ class VideoRootComponent extends React.Component{
         const services=this.state.services
        
             return (
-                <div>
+                <div className="wrap">
                     <VideoHeaderComponent name={services}/>
                     <VideoComponent name={services}/>
                 </div>
