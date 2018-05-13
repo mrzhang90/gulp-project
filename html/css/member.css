@@ -1,1 +1,124 @@
-@import "./global.css";
+@import './global.css';
+.header{
+    height:390px;
+}
+@keyframes rotation{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
+}
+.header{
+    height:390px;
+    @include bg_img(bg_head);
+}
+.set_rotate{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+}
+.bg_rotate{
+    margin-top:-10px;
+    width:312px;height:312px;
+    background:url(../images/bg_rotate.png) no-repeat;
+    background-size:contain;
+    transform-origin: 49% 49%;
+    animation:rotation 5s linear infinite;
+}
+.hard_photo{
+    position: absolute;top:69px;left:50%;transform:translateX(-50%);
+    img{
+        width: 143px;
+    	height: 144px;
+    }
+}
+.hard_photo::before{
+    content:"";
+    position: absolute;top:-48px;left:-49px;
+    width: 95px;height: 96px;
+    background:url("../images/icon_sign.png");
+    background-size:contain;
+}
+.hard_photo::after{
+    content:"";
+    position: absolute;bottom:0;left:0px;
+    width: 138px;height: 31px;
+    background:url("../images/icon_champion.gif");
+    @include bg_set();
+}
+.userName{
+    margin-top:-70px;
+    width:100%;
+    text-align:center;
+    color:#fff;
+}
+.titleTag{
+    padding-top:16px;
+    width:556px;
+    display: flex;
+    justify-content: space-between;
+    .tag{
+        display: flex;align-items: center;
+        padding-left:10px;
+        width: 165px;height: 26px;line-height: 26px;
+        border-radius: 13px;
+        color: #ffffff;
+    }
+    .tag:before{
+        content:"";
+        width:22px;height:22px;margin-right:5px;
+        @include bg_set();
+    }
+    .scoringKing{
+        background-color: #993333;
+    }
+    .scoringKing::before{
+        content:"";
+        background-image:url(../images/icon_scoringking.png);
+    }
+    .backBoard{
+        background-color: #339966;
+    }
+    .backBoard::before{
+        content:"";
+        background-image:url(../images/icon_backboard.png);
+    }
+    .hand{
+        background-color: #336399;
+    }
+    .hand::before{
+        content:"";
+        background-image:url(../images/icon_hand.png);
+    }
+}
+.school{
+    display:flex;align-items: center;
+    padding-top:16px;
+    color:#fff;
+    .name{
+        padding-left:9px;
+        padding-right:11px;
+    }
+    .score{
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        background-color: #339966;
+        border: solid 1px #ffffff; /*no*/
+        border-radius:50%;
+        text-align:center;
+    }
+}
+.mem_content{
+    background:#fff;
+}
+.head_mem{
+    height:43px;
+    line-height:43px;
+    display:flex;
+    justify-content:center;
+    background-color:#efefef;
+    span{
+        padding:0 13px;
+        @include font-dpr(28px); /*px*/
+        color: #999999;
+    }
+}

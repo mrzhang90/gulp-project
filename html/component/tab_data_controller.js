@@ -1,6 +1,7 @@
 const React = window.React;
 const Component=React.Component;
-import {drawCircle,hello} from './util';
+import {drawCircle} from './util';
+import DiffComponent from './diff_component';
 class ScoreController extends Component{
     constructor(props){
         super(props);
@@ -67,6 +68,7 @@ class ComparedController extends Component{
     }
     render(){
         const services=this.props.services
+        console.log(services)
         return (
             <div className="tab_diff">
                 <h3 className="title">球队对比</h3>
@@ -90,46 +92,6 @@ class ComparedController extends Component{
         var data_arr = [guestTeam.shotsSuccessTotal*2,guestTeam.thirdsSuccessTotal*3,guestTeam.penaltySuccessTotal],
                 color_arr = ['#cccccc','#000', '#339966'];
         drawCircle('canvas_diff2', data_arr, color_arr)
-    }
-}
-class DiffComponent extends Component{
-    render(){
-        var props=this.props;
-
-        var teamName=props.isHost?props.services.homeTeamName:props.services.guestTeamName;
-        var teamStatisticses =  props.isHost?props.services.statisticses[0]:props.services.statisticses[1];
-        var statisticseUser = teamStatisticses[teamStatisticses.length - 1];
-        return (
-            <div className="diff_col ui-col">
-                <div className="diff_canvas zoom5">
-                    <canvas id={props.id}></canvas>
-                </div>
-                <div className="diff_dec">{teamName}</div>
-                <ul className="diff_list">
-                    <li className="flex flex_li">
-                        <div className="flex flex_left">
-                            <i className="bgGrey"></i>
-                            <span>两分</span>
-                        </div>
-                        <span className="alignRight">{statisticseUser.shotsSuccessTotal*2}</span>
-                    </li>
-                    <li className="flex flex_li">
-                        <div className="flex flex_left">
-                            <i className="bgBlack"></i>
-                            <span>三分</span>
-                        </div>
-                        <span>{statisticseUser.thirdsSuccessTotal*3}</span>
-                    </li>
-                    <li className="flex flex_li">
-                        <div className="flex flex_left">
-                            <i className="bgGreen"></i>
-                            <span>罚球</span>
-                        </div>
-                        <span className="alignRight">{statisticseUser.penaltySuccessTotal}</span>
-                    </li>
-                </ul>
-            </div>
-        )
     }
 }
 class StatisticsController extends Component{
