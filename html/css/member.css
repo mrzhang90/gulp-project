@@ -122,3 +122,66 @@
         color: #999999;
     }
 }
+.border_bottom{
+    border-bottom:solid 1px #efefef; /*no*/
+}
+.border_left{
+    border-left:solid 1px #efefef; /*no*/
+}
+.left_fraction_mem{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    span{
+        @include font-dpr(188px); /*px*/
+        span{
+            @include font-dpr(24px); /*px*/
+        }
+    }
+}
+.right_fraction_mem{
+    .top_score{
+        height:179px;
+        overflow:hidden;
+        .diff_dec{
+            display:none;
+        }
+        .diff_col{
+            display: flex;
+        }
+        .diff_canvas{
+            flex:1;
+        }
+        .diff_list{
+            flex:1;
+            padding:3px 38px 3px 0;
+            .flex_li{
+                padding:12px 0;
+            }
+        }
+        .diff_canvas{
+            padding-left:30px;padding-right:20px;
+        }
+    }
+    .bottom_hitrate{
+        height:179px;
+        border-top:solid 1px #efefef; /*no*/
+    }
+}
+.second_men{
+    height:164px;
+    .left_second_men,.right_second_men{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        span{
+            padding:0 7px;
+            @include font-dpr(50px); /*px*/
+            color:#000;
+            span{
+                @include font-dpr(24px); /*px*/
+                color:#999;
+            }
+        }
+    }
+}

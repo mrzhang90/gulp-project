@@ -11,12 +11,55 @@ class Content extends React.Component{
                     <span>100:98</span>
                     <span>中国科学院</span>
                 </div>
-                <div className="fraction_mem">
-                    <div className="left_fraction_mem">
-
+                <div className="first_mem flex border_bottom">
+                    <div className="left_fraction_mem ui-col">
+                        <span>
+                            <span>得分</span>
+                            16
+                        </span>
                     </div>
-                    <div className="right"></div>
-                    <DiffComponent id="canvas_diff1" services={services} isHost={true}></DiffComponent>
+                    <div className="right_fraction_mem ui-col border_left">
+                        <div className="top_score" id="top_score">
+                            <DiffComponent id="canvas_diff1" data_width="top_score" services={services} isHost={true}></DiffComponent>
+                        </div>
+                        <div className="bottom_hitrate">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div className="second_men flex border_bottom">
+                    <div className="left_second_men ui-col">
+                        <span>
+                            <span>篮板</span>
+                            13
+                        </span>
+                    </div>
+                    <div className="right_second_men ui-col border_left">
+                        <span>
+                            <span>主攻</span>
+                            6
+                        </span>
+                    </div>
+                </div>
+                <div className="second_men flex border_bottom">
+                    <div className="left_second_men ui-col">
+                        <span>
+                            <span>抢断</span>
+                            5
+                        </span>
+                    </div>
+                    <div className="right_second_men ui-col border_left">
+                        <span>
+                            <span>失误</span>
+                            3
+                        </span>
+                    </div>
+                    <div className="right_second_men ui-col border_left">
+                        <span>
+                            <span>犯规</span>
+                            2
+                        </span>
+                    </div>
                 </div>
             </div>
         )
