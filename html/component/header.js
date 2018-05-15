@@ -24,8 +24,8 @@ class HeaderComponent extends React.Component{
                     </div>
                     <div className="vs">
                         <div>{services.status.desc}</div>
-                        {services.status.value ==4 &&
-                            <a href={href} className="lookBank">查看回放</a>
+                          {((services.videoEnum.value ==3 )||(services.videoEnum.value ==1))&&
+                            <a href={href} className="lookBank">{services.videoEnum.desc}</a>
                         }
                     </div>
                     <div className="SecondTeam">
