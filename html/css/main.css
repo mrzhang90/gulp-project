@@ -36,6 +36,23 @@
             color:#fff;
             text-decoration: underline;
         }
+        .FirstTeam{
+            width: 150px;
+            .teamName{
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+            
+        }
+        .SecondTeam{
+            width: 150px;
+            .teamName{
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+        }
     }
     .teamPhoto{
         margin:15px auto 0;
