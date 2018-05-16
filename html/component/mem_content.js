@@ -1,9 +1,12 @@
 const React=window.React;
 import DiffComponent from './diff_component';
 import {drawCircle} from './util';
+import echarts from './echarts.option';
+import dashboard from './canvas_dashboard';
 class Content extends React.Component{
     render(){
         const services=this.props.services.data;
+        console.log(services)
         return (
             <div className="mem_content">
                 <div className="head_mem">
@@ -23,7 +26,13 @@ class Content extends React.Component{
                             <DiffComponent id="canvas_diff1" data_width="top_score" services={services} isHost={true}></DiffComponent>
                         </div>
                         <div className="bottom_hitrate">
-                            
+                            <canvas id="clock">
+                                您的浏览器不支持canvas标签，无法看到时钟
+                            </canvas>
+                            <div className="pl18">
+                                <p>投篮命中率</p>
+                                <p>24投16中</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -61,6 +70,7 @@ class Content extends React.Component{
                         </span>
                     </div>
                 </div>
+                <div id="radar"></div>
             </div>
         )
     }
@@ -72,6 +82,8 @@ class Content extends React.Component{
         var data_arr = [homeTeam.shotsSuccessTotal*2,homeTeam.thirdsSuccessTotal*3,homeTeam.penaltySuccessTotal],
                 color_arr = [ '#cccccc','#000', '#339966'];
         drawCircle('canvas_diff1', data_arr, color_arr)
+        echarts('radar')
+        dashboard('clock',70)
     }
 }
 export default Content;

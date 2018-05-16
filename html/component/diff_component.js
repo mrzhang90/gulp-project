@@ -2,7 +2,6 @@ const React = window.React;
 export default class DiffComponent extends React.Component{
     render(){
         var props=this.props;
-        console.log(props)
         var teamName=props.isHost?props.services.homeTeamName:props.services.guestTeamName;
         var teamStatisticses =  props.isHost?props.services.statisticses[0]:props.services.statisticses[1];
         var statisticseUser = teamStatisticses[teamStatisticses.length - 1];

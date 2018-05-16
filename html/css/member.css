@@ -164,8 +164,11 @@
         }
     }
     .bottom_hitrate{
+        padding-left:40px;
+        display:flex;
         height:179px;
         border-top:solid 1px #efefef; /*no*/
+        align-items:center;
     }
 }
 .second_men{
@@ -184,4 +187,11 @@
             }
         }
     }
+}
+#radar{
+    margin:20px auto;
+    height:440px;
+}
+#clock{
+    width:157px;height:78px;
 }

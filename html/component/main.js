@@ -24,8 +24,9 @@ class RootComponent extends React.Component{
         if(JSON.stringify(services)!="{}"){
             return (
                 <div>
-                    <HeaderComponent name={services}/>
-                    <TabComponent name={services}/>
+                    hello world
+                    {/* <HeaderComponent name={services}/> */}
+                    {/* <TabComponent name={services}/> */}
                 </div>
             )
 
@@ -36,25 +37,25 @@ class RootComponent extends React.Component{
         }
     }
     componentDidMount(){
-        var obj={};
-        var That=this;
-        axios.get('/gm/game/detail.json?gameId='+gameId)
-        .then(function (response) {
-            obj=response.data;
-            obj.data.status.value=4
-            var services=Object.assign({},{'stateVal':getGameState(obj.data.status.value)},obj)
-            if(obj.data.status.value==1){
-                window.location.hash="/index"
-            }else{
-                window.location.hash="/data"
-            }
-            That.setState({
-                services
-            })
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+        // var obj={};
+        // var That=this;
+        // axios.get('/gm/game/detail.json?gameId='+gameId)
+        // .then(function (response) {
+        //     obj=response.data;
+        //     obj.data.status.value=4
+        //     var services=Object.assign({},{'stateVal':getGameState(obj.data.status.value)},obj)
+        //     if(obj.data.status.value==1){
+        //         window.location.hash="/index"
+        //     }else{
+        //         window.location.hash="/data"
+        //     }
+        //     That.setState({
+        //         services
+        //     })
+        // })
+        // .catch(function (error) {
+        //     console.log(error);
+        // });
     }
 }
 ReactDOM.render(

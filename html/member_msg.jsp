@@ -22,6 +22,7 @@
   </div>
   <script crossorigin src="/assets/script/react.production.min.js"></script>
   <script crossorigin src="/assets/script/react-dom.production.min.js"></script>
+  <script src="/assets/script/echarts.min.js"></script>
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script> -->
   <!-- build:js script/main.js -->
   <script>
