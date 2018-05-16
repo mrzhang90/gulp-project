@@ -9,7 +9,7 @@
   <meta content="telephone=no" name="format-detection">
   <meta content="email=no" name="format-detection">
   <meta name="msapplication-tap-highlight" content="no">
-  <title>Title</title>
+  <title>个人信息</title>
   <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
   <!-- <link rel="stylesheet" href="http://g.tbcdn.cn/thx/cube/1.2.1/cube-min.css"> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.min.css">

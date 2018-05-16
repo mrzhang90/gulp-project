@@ -9,7 +9,7 @@
     <meta content="telephone=no" name="format-detection">
     <meta content="email=no" name="format-detection">
     <meta name="msapplication-tap-highlight" content="no">
-    <title>Document</title>
+    <title>直播</title>
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
     <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
     <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.6.0/skins/default/aliplayer-min.css">
