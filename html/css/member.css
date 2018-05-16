@@ -26,8 +26,9 @@
 .hard_photo{
     position: absolute;top:69px;left:50%;transform:translateX(-50%);
     img{
-        width: 143px;
+        width: 144px;
     	height: 144px;
+        border-radius: 50%;
     }
 }
 .hard_photo::before{
@@ -96,6 +97,11 @@
     .name{
         padding-left:9px;
         padding-right:11px;
+    }
+    img{
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
     }
     .score{
         width: 32px;

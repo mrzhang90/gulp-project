@@ -10,25 +10,26 @@ class Title_tag extends React.Component{
 } 
 class Header extends React.Component{
     render(){
+        var services = this.props.services;
         return(
             <div className="header">
                 <div className="set_rotate">
                     <div className="bg_rotate"></div>
                     <div className="hard_photo">
-                        <img src="/assets/images/tmp_qy.png"/>
+                        <img  src={services.userPhoto} />
                     </div>
                     <div className="userName">
-                        柴晨
+                        {services.nickName}
                     </div>
                     <div className="titleTag">
-                        <Title_tag title="本场得分王" className="tag scoringKing"></Title_tag>
-                        <Title_tag title="本场篮板王" className="tag backBoard"></Title_tag>
-                        <Title_tag title="本场助攻王" className="tag hand"></Title_tag>
+                       {services.isBestScore.value && <Title_tag title="本场得分王" className="tag scoringKing"></Title_tag>}
+                       {services.isBestBoard.value && <Title_tag title="本场篮板王" className="tag backBoard"></Title_tag>}
+                       {services.isBestAssit.value && <Title_tag title="本场助攻王" className="tag hand"></Title_tag>}
                     </div>
                     <div className="school">
-                        <img src="/assets/images/tmp1.png"/>
-                        <span className="name">北京理工</span>
-                        <span className="score">11</span>
+                        <img src={services.teamLogo}/>
+                        <span className="name">{services.teamName}</span>
+                        <span className="score">{services.number}</span>
                     </div>
                 </div>
             </div>

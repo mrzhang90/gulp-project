@@ -3,7 +3,10 @@ import DiffComponent from './diff_component';
 import {drawCircle} from './util';
 class Content extends React.Component{
     render(){
-        const services=this.props.services.data;
+        const services=this.props.services;
+        var userData ={
+            statisticses:[[services],[services]],
+        } ;
         return (
             <div className="mem_content">
                 <div className="head_mem">
@@ -15,12 +18,12 @@ class Content extends React.Component{
                     <div className="left_fraction_mem ui-col">
                         <span>
                             <span>得分</span>
-                            16
+                            {services.score}
                         </span>
                     </div>
                     <div className="right_fraction_mem ui-col border_left">
                         <div className="top_score" id="top_score">
-                            <DiffComponent id="canvas_diff1" data_width="top_score" services={services} isHost={true}></DiffComponent>
+                           <DiffComponent id="canvas_diff1" data_width="top_score" services={userData} isHost={true}></DiffComponent>
                         </div>
                         <div className="bottom_hitrate">
                             
@@ -31,13 +34,13 @@ class Content extends React.Component{
                     <div className="left_second_men ui-col">
                         <span>
                             <span>篮板</span>
-                            13
+                            {services.backboard}
                         </span>
                     </div>
                     <div className="right_second_men ui-col border_left">
                         <span>
-                            <span>主攻</span>
-                            6
+                            <span>助攻</span>
+                            {services.assists}
                         </span>
                     </div>
                 </div>
@@ -45,19 +48,19 @@ class Content extends React.Component{
                     <div className="left_second_men ui-col">
                         <span>
                             <span>抢断</span>
-                            5
+                            {services.steals}
                         </span>
                     </div>
                     <div className="right_second_men ui-col border_left">
                         <span>
                             <span>失误</span>
-                            3
+                            {services.miss}
                         </span>
                     </div>
                     <div className="right_second_men ui-col border_left">
                         <span>
                             <span>犯规</span>
-                            2
+                            {services.foul}
                         </span>
                     </div>
                 </div>
@@ -65,11 +68,9 @@ class Content extends React.Component{
         )
     }
     componentDidMount(){
-        var cprops=this.props.services.data;
-        var homeTeams =  cprops.statisticses[0];
-        var homeTeam = homeTeams[homeTeams.length - 1];
+        var cprops=this.props.services;
 
-        var data_arr = [homeTeam.shotsSuccessTotal*2,homeTeam.thirdsSuccessTotal*3,homeTeam.penaltySuccessTotal],
+        var data_arr = [cprops.shotsSuccessTotal*2,cprops.thirdsSuccessTotal*3,cprops.penaltySuccessTotal],
                 color_arr = [ '#cccccc','#000', '#339966'];
         drawCircle('canvas_diff1', data_arr, color_arr)
     }

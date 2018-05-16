@@ -27,6 +27,7 @@
   <script>
       const userInfoId = '${userInfoId}';
       const gmTeamId = '${gmTeamId}';
+      const userId =  '${gtplayerId}';
   </script>
   <!-- endbuild -->
   <script src="/assets/script/member.js"></script>
