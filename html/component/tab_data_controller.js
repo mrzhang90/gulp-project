@@ -350,7 +350,7 @@ export default class DataController extends Component{
         return (
             <div>
                 <ScoreController services={services.sections}></ScoreController>
-                {services.status.value ==3 &&
+                {services.status.value ==4 &&
                     <OptimalController services={services.optimals}></OptimalController>
                 }
                 <ComparedController services={services}></ComparedController>

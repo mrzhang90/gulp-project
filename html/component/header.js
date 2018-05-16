@@ -24,7 +24,7 @@ class HeaderComponent extends React.Component{
                     </div>
                     <div className="vs">
                         <div>{services.status.desc}</div>
-                          {((services.videoEnum.value ==3 )||(services.videoEnum.value ==1))&&
+                          {(services.videoEnum.value ==1)&&
                             <a href={href} className="lookBank">{services.videoEnum.desc}</a>
                         }
                     </div>
