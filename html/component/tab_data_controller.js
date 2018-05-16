@@ -41,7 +41,7 @@ class OptimalController extends Component{
                   </div>
                          <span>{optimal.homeTeamUserCount}</span>
                     </div>
-                    <span className="middle">得分</span>
+                    <span className="middle">{optimal.optimalType.desc}</span>
                     <div className="between">
                          <span>{optimal.guestTeamUserCount}</span>
                      <div>
