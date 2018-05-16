@@ -4,15 +4,20 @@ import {drawCircle} from './util';
 class Content extends React.Component{
     render(){
         const services=this.props.services;
-        var userData ={
-            statisticses:[[services],[services]],
+        var userData = {
+            penaltySuccessTotal:services.penaltySuccessTotal,
+            shotsSuccessTotal:services.shotsSuccessTotal,
+            thirdsSuccessTotal:services.thirdsSuccessTotal,
+        };
+        var userDataArry = {
+            statisticses:[[userData],[userData]],
         } ;
         return (
             <div className="mem_content">
                 <div className="head_mem">
-                    <span>北京理工</span>
-                    <span>100:98</span>
-                    <span>中国科学院</span>
+                    <span>{services.firstTeamName}</span>
+                    <span style ={{textAlign:'center'}} >{services.firstTeamScore+':'+services.secondTeamScore}</span>
+                    <span>{services.secondTeamName}</span>
                 </div>
                 <div className="first_mem flex border_bottom">
                     <div className="left_fraction_mem ui-col">
@@ -23,7 +28,7 @@ class Content extends React.Component{
                     </div>
                     <div className="right_fraction_mem ui-col border_left">
                         <div className="top_score" id="top_score">
-                           <DiffComponent id="canvas_diff1" data_width="top_score" services={userData} isHost={true}></DiffComponent>
+                           <DiffComponent id="canvas_diff1" data_width="top_score" services={userDataArry} isHost={true}></DiffComponent>
                         </div>
                         <div className="bottom_hitrate">
                             

@@ -126,6 +126,7 @@
         padding:0 13px;
         @include font-dpr(28px); /*px*/
         color: #999999;
+        width: 150px;
     }
 }
 .border_bottom{
