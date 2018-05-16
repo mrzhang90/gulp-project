@@ -4,7 +4,11 @@ export function drawCircle(canvasId, data_arr, color_arr){
     if(parent.offsetHeight<=0)
         return;
     var cHeight=drawing.width;
-    // drawing.width=cHeight;
+    if(drawing.getAttribute('data-width')){
+        var id=drawing.getAttribute('data-width');
+        cHeight=document.getElementById(id).offsetHeight*2;
+    }
+    drawing.width=cHeight;
     drawing.height=cHeight;
     // console.log(drawing.width)
     if(drawing.getContext) {

@@ -2,13 +2,14 @@ const React = window.React;
 export default class DiffComponent extends React.Component{
     render(){
         var props=this.props;
+        console.log(props)
         var teamName=props.isHost?props.services.homeTeamName:props.services.guestTeamName;
         var teamStatisticses =  props.isHost?props.services.statisticses[0]:props.services.statisticses[1];
         var statisticseUser = teamStatisticses[teamStatisticses.length - 1];
         return (
             <div className="diff_col ui-col">
                 <div className="diff_canvas zoom5">
-                    <canvas id={props.id}></canvas>
+                    <canvas id={props.id} data-width={props.data_width}></canvas>
                 </div>
                 <div className="diff_dec">{teamName}</div>
                 <ul className="diff_list">

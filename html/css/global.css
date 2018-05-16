@@ -72,3 +72,20 @@ button{
 body,button{
     @include font-dpr(24px); /*px*/
 }
+.flex_li{
+    align-items: center;
+    justify-content: space-between;
+    padding:18px 50px 0;
+    i{
+        margin-right:11px;
+        width: 16px;
+        height: 17px;
+        border-radius:50%;
+    }
+    .flex_left{
+        align-items: center;
+    }
+    .alignRight{
+        align-self:flex-end;
+    }
+}
