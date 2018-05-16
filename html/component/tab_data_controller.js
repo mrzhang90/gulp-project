@@ -41,7 +41,7 @@ class OptimalController extends Component{
                   </div>
                          <span>{optimal.homeTeamUserCount}</span>
                     </div>
-                    <span className="middle">得分</span>
+                    <span className="middle">{optimal.optimalType.desc}</span>
                     <div className="between">
                          <span>{optimal.guestTeamUserCount}</span>
                      <div>
@@ -275,12 +275,17 @@ class HomedataController extends Component{
     }
 }
 class StaticsDataComponent extends Component{
-    handleClick(recordId,isUser){
+     constructor(props){
+        super(props);
+       
+    }
+    handleClick(recordId,isUser,userId){
         if(isUser==0){
             alert('临时球员')
             return;
         }
-        window.location.href=`/gm/game/member/${recordId}?gmTeamId=${this.props.gmTeamId}`
+        
+        window.location.href=`/gm/game/member/${userId}`
     }
     render(){
         const services=this.props.services;
@@ -289,7 +294,7 @@ class StaticsDataComponent extends Component{
             var number = (user.nickName === '球队统计') ?'--':user.number;
             return <li key={index}>
                 <span>{number}</span>
-                <span onClick={this.handleClick.bind(this,user.recordId,user.isUser.value)}>{user.nickName}</span>
+                <span onClick={this.handleClick.bind(this,user.recordId,user.isUser.value,user.id)}>{user.nickName}</span>
             </li>
         })
         const elements2=services.map((user,index)=>{
@@ -345,7 +350,7 @@ export default class DataController extends Component{
         return (
             <div>
                 <ScoreController services={services.sections}></ScoreController>
-                {services.status.value ==3 &&
+                {services.status.value ==4 &&
                     <OptimalController services={services.optimals}></OptimalController>
                 }
                 <ComparedController services={services}></ComparedController>

@@ -16,8 +16,8 @@ class RootComponent extends React.Component{
         if(JSON.stringify(services)!="{}"){
             return (
                 <div>
-                    <Header/>
-                    <Content services={services}/>
+                    <Header services={services.data}/>
+                    <Content services={services.data}/>
                 </div>
             )
 
@@ -31,12 +31,14 @@ class RootComponent extends React.Component{
         var obj={};
         var That=this;
         var gameId='DKD2DKD2dk23';
-        axios.get('/gm/game/detail.json?gameId='+gameId)
+        console.log('ssss'+userId);
+        axios.get('/gm/game/user.json?gtplayerId='+userId)
         .then(function (response) {
             obj=response.data;
-            obj.data.status.value=4
-            var services=Object.assign({},{'stateVal':getGameState(obj.data.status.value)},obj)
-            if(obj.data.status.value==1){
+            console.log(obj);
+            
+            var services=Object.assign({},{'stateVal':getGameState(obj.status)},obj)
+            if(obj.status ==1){
                 window.location.hash="/index"
             }else{
                 window.location.hash="/data"
