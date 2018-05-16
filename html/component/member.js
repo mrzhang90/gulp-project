@@ -31,7 +31,6 @@ class RootComponent extends React.Component{
         var obj={};
         var That=this;
         var gameId='DKD2DKD2dk23';
-        console.log('ssss'+userId);
         axios.get('/gm/game/user.json?gtplayerId='+userId)
         .then(function (response) {
             obj=response.data;

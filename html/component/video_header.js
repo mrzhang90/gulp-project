@@ -91,7 +91,7 @@ class VideoHeaderComponent extends React.Component{
                  // useH5Prism:true,
                  // useFlashPrism:false,
                  x5_type: 'h5',
-                 x5_video_position: 'top',
+                 x5_video_position: 'center',
                  x5_fullscreen: false,
                  x5_orientation:'portraint',
                  

@@ -38,7 +38,7 @@ class Content extends React.Component{
                             </canvas>
                             <div className="pl18">
                                 <p>投篮命中率</p>
-                                <p>24投16中</p>
+                                <p>{services.thirdsTotal+services.shotsTotal}投{services.shotsSuccessTotal+services.thirdsSuccessTotal}中</p>
                             </div>
                         </div>
                     </div>
@@ -83,12 +83,18 @@ class Content extends React.Component{
     }
     componentDidMount(){
         var cprops=this.props.services;
-
+        var total=cprops.thirdsTotal+cprops.shotsTotal,hit=cprops.shotsSuccessTotal+cprops.thirdsSuccessTotal;
         var data_arr = [cprops.shotsSuccessTotal*2,cprops.thirdsSuccessTotal*3,cprops.penaltySuccessTotal],
                 color_arr = [ '#cccccc','#000', '#339966'];
         drawCircle('canvas_diff1', data_arr, color_arr)
-        echarts('radar')
-        dashboard('clock',70)
+        echarts('radar',{
+            'score':cprops.score,
+            'steals':cprops.steals,
+            'caps':cprops.miss,
+            'backboard':cprops.backboard,
+            'assists':cprops.assists
+        })
+        dashboard('clock',parseInt((hit/total)*100));
     }
 }
 export default Content;
